@@ -1,0 +1,84 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC');
+
+/*
+    font-family: 'Vollkorn SC', serif;
+    */
+
+html{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 850px;
+    background-image: url("incl/imgs/bg.jpg");
+    line-height: 830px;
+    background-size: cover;
+    background-position: center;
+}
+nav{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+nav ul{
+    padding: 0;
+}
+nav ul li{
+    color: white;
+    display: inline;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 5px black;
+    padding: 25px;
+    padding-bottom: 20px;
+    transition: background 0.5s ease-out;
+}
+nav ul li:hover{
+    background-color: rgba(255, 255, 255, 0.35);
+}
+nav ul li a{
+    height: 67px;
+}
+nav ul li a:hover{
+    cursor: pointer;
+}
+
+h1{
+    font-size: 6em;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 0;
+    color: white;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 5px black;
+}
+
+.nav_underline{  
+	display: inline-block;
+	position: relative;
+	padding-bottom: 3px;
+}
+.nav_underline:after{
+	content: "";
+	border-radius: 50px;
+	display: block;
+	margin: auto;
+    margin-top: -3px;
+	height: 3px;
+	width: 0px;
+	background-color: transparent;
+	transition: width 0.6s ease-out, background-color 0.6s ease-out, box-shadow 0.6s ease-out;
+}
+.nav_underline:hover:after{
+	width: 90%;
+	background-color: #6a34a8;
+	box-shadow: 1px 1px 2px black;
+}
