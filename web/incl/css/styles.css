@@ -57,6 +57,7 @@ header{
     line-height: 830px;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 header h1{
     font-size: 6em;
@@ -73,6 +74,7 @@ header h1{
 
 /* <Under header skew boxes>*/
 section#tripleSkew{
+    position: relative;
     width: 109%;
     display: flex;
     margin-left: -35px;
@@ -116,9 +118,9 @@ main div{
     position: absolute;
     margin: 0 auto;
     height: 90%;
-    border: solid red 2px;
-    background-color: green;
     width: 100%;
+    background-color: rebeccapurple;
+    background-image: url("../imgs/grainy_background.png");
 }
 main div#tab1{
     visibility: visible;
@@ -156,3 +158,24 @@ main div#tab3{
 	box-shadow: 1px 1px 2px black;
 }
 /* </Underline> */
+
+
+
+/* <Scrollbar> */
+#sb-3::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#sb-3::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+#sb-3::-webkit-scrollbar-thumb
+{
+	background-color: #6a34a8;
+}
+/* </Scrollbar> */

@@ -8,7 +8,7 @@
         <title>G&H Bílaleiga</title>
         <link rel="preload" as="image" href="incl/imgs/bg.jpg">
     </head>
-    <body>
+    <body id="sb-3">
         <nav>
             <ul>
                 <li>
@@ -27,13 +27,13 @@
             <h1>G<p style="display: inline; font-size: 60px;">&</p>H bílaleiga</h1>
         </header>
         <section id="tripleSkew">
-            <div onclick="tabChange(1)">
+            <div onclick="tabChange(1), document.getElementById('tripleSkew').scrollIntoView();">
                 <p>Number 1</p>
             </div>
-            <div onclick="tabChange(2)">
+            <div onclick="tabChange(2), document.getElementById('tripleSkew').scrollIntoView();">
                 <p>Number 2</p>
             </div>
-            <div onclick="tabChange(3)">
+            <div onclick="tabChange(3), document.getElementById('tripleSkew').scrollIntoView();">
                 <p>Number 3</>
             </div>
         </section>
