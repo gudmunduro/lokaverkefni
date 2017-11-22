@@ -1,0 +1,158 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC');
+
+/*
+    font-family: 'Vollkorn SC', serif;  ~  Big header h1
+*/
+
+html{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* <Top nav>*/
+nav{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+nav ul{
+    padding: 0;
+}
+nav ul li{
+    color: white;
+    display: inline;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 5px black;
+    padding: 25px;
+    padding-bottom: 20px;
+    transition: background 0.5s ease-out;
+}
+nav ul li:hover{
+    background-color: rgba(255, 255, 255, 0.35);
+}
+nav ul li a{
+    height: 67px;
+}
+nav ul li a:hover{
+    cursor: pointer;
+}
+/* </Top nav>*/
+
+
+
+/* <Header> */
+header{
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 850px;
+    background-image: url("../imgs/bg.jpg");
+    line-height: 830px;
+    background-size: cover;
+    background-position: center;
+}
+header h1{
+    font-size: 6em;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 0;
+    color: white;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 5px black;
+}
+/* </Header> */
+
+
+
+/* <Under header skew boxes>*/
+section#tripleSkew{
+    width: 109%;
+    display: flex;
+    margin-left: -35px;
+    background-image: url("../imgs/blu_blur.jpg");
+    background-size: cover;
+    background-position: top right;
+    box-shadow: 0px 0px 15px #6a34a8;
+}
+section#tripleSkew div{
+    display: inline-block;
+    transform: skew(-30deg);
+    border: solid #6a34a8 1px;
+    width: 32.333%;
+    transition: background 0.5s ease-out, transform 0.3s ease-out;
+    background-image: url("../imgs/grainy_background.png");
+}
+section#tripleSkew div:hover {
+    background-color: rgba(106,52,168, 0.65);
+    transform: translateY(-5px) skew(-30deg);
+}
+section#tripleSkew div p{
+    color: white;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 1px #6a34a8;
+    height: 78px;
+    line-height: 78px;
+    text-align: center;
+    transform: skew(30deg);
+    cursor: default;
+}
+/* </Under header skew boxes>*/
+
+
+
+/* <Main tabs> */
+main{
+    height: 630px;
+    width: 100%;
+}
+main div{
+    position: absolute;
+    margin: 0 auto;
+    height: 90%;
+    border: solid red 2px;
+    background-color: green;
+    width: 100%;
+}
+main div#tab1{
+    visibility: visible;
+}
+main div#tab2{
+    visibility: hidden;
+}
+main div#tab3{
+    visibility: hidden;
+}
+/* </Main tabs> */
+
+
+
+/* <Underline> */
+.nav_underline{  
+	display: inline-block;
+	position: relative;
+	padding-bottom: 3px;
+}
+.nav_underline:after{
+	content: "";
+	border-radius: 50px;
+	display: block;
+	margin: auto;
+    margin-top: -3px;
+	height: 3px;
+	width: 0px;
+	background-color: transparent;
+	transition: width 0.6s ease-out, background-color 0.6s ease-out, box-shadow 0.6s ease-out;
+}
+.nav_underline:hover:after{
+	width: 90%;
+	background-color: #6a34a8;
+	box-shadow: 1px 1px 2px black;
+}
+/* </Underline> */
