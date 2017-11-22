@@ -121,15 +121,7 @@ main div{
     width: 100%;
     background-color: rebeccapurple;
     background-image: url("../imgs/grainy_background.png");
-}
-main div#tab1{
-    visibility: visible;
-}
-main div#tab2{
-    visibility: hidden;
-}
-main div#tab3{
-    visibility: hidden;
+    transition: transform 0.3s ease-out;
 }
 /* </Main tabs> */
 

@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 from time import sleep
 
+
 class MainWindow(QMainWindow):
 
     def __init__(self):

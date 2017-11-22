@@ -163,8 +163,8 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>30</y>
+        <x>20</x>
+        <y>65</y>
         <width>113</width>
         <height>31</height>
        </rect>
@@ -176,8 +176,8 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>100</y>
+        <x>200</x>
+        <y>65</y>
         <width>113</width>
         <height>31</height>
        </rect>
@@ -189,11 +189,72 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>170</y>
+        <x>20</x>
+        <y>165</y>
         <width>113</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Bílnúmer</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>25</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Upplýsingar um leigjanda</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>125</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Upplýsingar um leigu</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateEdit">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>165</y>
+        <width>110</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QDateEdit{
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+}</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>165</y>
+        <width>110</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </widget>
