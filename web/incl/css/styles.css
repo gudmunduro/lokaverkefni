@@ -93,7 +93,7 @@ section#tripleSkew div{
 }
 section#tripleSkew div:hover {
     background-color: rgba(106,52,168, 0.65);
-    transform: translateY(-5px) skew(-30deg);
+    transform: translateY(-4px) skew(-30deg);
 }
 section#tripleSkew div p{
     color: white;
@@ -111,19 +111,38 @@ section#tripleSkew div p{
 
 /* <Main tabs> */
 main{
-    height: 630px;
+    height: 770px;
     width: 100%;
 }
 main div{
     position: absolute;
     margin: 0 auto;
-    height: 90%;
+    height: 480px;
     width: 100%;
     background-color: rebeccapurple;
     background-image: url("../imgs/grainy_background.png");
     transition: transform 0.3s ease-out;
 }
+main div article{
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 3px 20px 20px 20px;
+    border-radius: 3px;
+}
 /* </Main tabs> */
+
+
+
+/* <Footer> */
+footer{
+    border-top: solid #6a34a8 1px;
+    text-align: center;
+    background-color: rebeccapurple;
+    height: 100%;
+}
+/* </Footer> */
 
 
 
