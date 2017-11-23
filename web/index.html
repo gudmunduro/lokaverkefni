@@ -15,13 +15,13 @@
         <nav>
             <ul>
                 <li>
-                    <a class="nav_underline">Heim</a>
+                    <a class="nav_underline" href="./">Heim</a>
                 </li>
                 <li>
-                    <a class="nav_underline">Bílafloti</a>
+                    <a class="nav_underline" href="./car_fleet">Bílafloti</a>
                 </li>
                 <li>
-                    <a class="nav_underline">Panta</a>
+                    <a class="nav_underline" href="./order">Panta</a>
                 </li>
             </ul>
         </nav>
@@ -40,21 +40,6 @@
                 <p>Number 3</>
             </div>
         </section>
-        <script>
-            /*
-                NO LONGER IN USE
-            */
-            var last_tab = 1
-            function tabChange(tab) {
-                if (last_tab == tab)
-                {
-                    return;
-                }
-                document.getElementById("tab" + tab).style.visibility = "visible";
-                document.getElementById("tab" + last_tab).style.visibility = "hidden";
-                last_tab = tab
-            };
-        </script>
         <main>
             <div style="display: block; transform: translateX(0vw);" id="tab1">
                 <article>

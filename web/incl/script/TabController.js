@@ -14,8 +14,7 @@ var TabController = {
 
     set currentTab(index) {
         if (index == TabController.currentTabIndex) return;
-        if (TabController.tabChanegTimer != null)
-        {
+        if (TabController.tabChanegTimer != null) {
             return
         }
         TabController.getTabById(index).style.transform = "translateX(" + ((index > TabController.currentTabIndex) ? "100" : "-100") + "vw)";

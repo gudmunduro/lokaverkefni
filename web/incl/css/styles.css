@@ -13,6 +13,13 @@ body{
     margin: 0;
     padding: 0;
 }
+a{
+    text-decoration: none;
+}
+::selection{
+    background-color: rgba(106, 52, 168, 0.8);
+    color: white;
+}
 
 
 
@@ -24,9 +31,9 @@ nav{
 }
 nav ul{
     padding: 0;
+    user-select: none;
 }
 nav ul li{
-    color: white;
     display: inline;
     font-family: 'Vollkorn SC', serif;
     text-shadow: 2px 2px 5px black;
@@ -39,6 +46,8 @@ nav ul li:hover{
 }
 nav ul li a{
     height: 67px;
+    color: white;
+    
 }
 nav ul li a:hover{
     cursor: pointer;
@@ -90,6 +99,7 @@ section#tripleSkew div{
     width: 32.333%;
     transition: background 0.5s ease-out, transform 0.3s ease-out;
     background-image: url("../imgs/grainy_background.png");
+    user-select: none;
 }
 section#tripleSkew div:hover {
     background-color: rgba(106,52,168, 0.65);
