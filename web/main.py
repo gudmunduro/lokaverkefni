@@ -4,8 +4,12 @@ from api import *
 
 @route("/")
 def main():
-    return ""
+    return static_file("index.html", root="./")
+
+@route("/incl/<file:path>")
+def static(file):
+    return static_file(file, root="incl/")
 
 if __name__ == '__main__':
-    connect_to_db()
+    # connect_to_db()
     run()
