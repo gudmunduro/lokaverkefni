@@ -176,7 +176,7 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>160</x>
         <y>65</y>
         <width>113</width>
         <height>31</height>
@@ -228,33 +228,114 @@ QPushButton:pressed{
        <string>Upplýsingar um leigu</string>
       </property>
      </widget>
-     <widget class="QDateEdit" name="dateEdit">
+     <widget class="QLineEdit" name="lineEdit_5">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>300</x>
+        <y>65</y>
+        <width>113</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Netfang</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_6">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>65</y>
+        <width>113</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Kennitala</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
         <y>165</y>
-        <width>110</width>
+        <width>113</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QDateEdit{
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	color: white;
 	border: none;
-	border-bottom: 1px solid #BDBDBD;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
 }</string>
       </property>
+      <property name="text">
+       <string>10/10/2017</string>
+      </property>
      </widget>
-     <widget class="QDateEdit" name="dateEdit_2">
+     <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>165</y>
-        <width>110</width>
+        <width>113</width>
         <height>31</height>
        </rect>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>20/10/2017</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>310</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Bæta við pöntun</string>
       </property>
      </widget>
     </widget>
