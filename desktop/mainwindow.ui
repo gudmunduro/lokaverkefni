@@ -53,18 +53,158 @@ QLineEdit:focus{
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Pantanir</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>591</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>AB-123</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>PZ-615</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Tegund</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Flokkur</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Frá</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Til</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_7">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>20</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{
+	font-size: 11pt;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+QLineEdit:focus{
+	border-bottom-color: #2196F3;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Leita</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="geometry">
+       <rect>
+        <x>414</x>
+        <y>20</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>🔎</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>330</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #F44336;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+QPushButton:hover{
+	background-color: #D32F2F;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Taka út</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>Staða</string>
+      <string>Bílar</string>
      </attribute>
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>70</y>
-        <width>571</width>
+        <width>591</width>
         <height>301</height>
        </rect>
       </property>
@@ -103,7 +243,7 @@ QLineEdit:focus{
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>100</x>
         <y>20</y>
         <width>311</width>
         <height>31</height>
@@ -131,7 +271,7 @@ QLineEdit:focus{
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>414</x>
         <y>20</y>
         <width>41</width>
         <height>31</height>

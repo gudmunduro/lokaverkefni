@@ -11,13 +11,27 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
-        loadUi("mainWindow.ui", self)
+        loadUi("mainwindow.ui", self)
+
+
+class LoginWindow(QMainWindow):
+
+    def __init__(self):
+        super(LoginWindow, self).__init__()
+        loadUi("loginwindow.ui", self)
+        self.loginButton = self.findChild(QPushButton, "loginButton")
+        self.loginButton.pressed.connect(self.login_button_clicked)
+
+    def login_button_clicked(self):
+        self.main_window = MainWindow()
+        self.main_window.show()
+        self.close()
 
 
 if __name__ == '__main__':
     import sys
 
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = LoginWindow()
     window.show()
     sys.exit(app.exec_())
