@@ -32,7 +32,7 @@ QLineEdit:focus{
     <property name="geometry">
      <rect>
       <x>152</x>
-      <y>200</y>
+      <y>210</y>
       <width>95</width>
       <height>31</height>
      </rect>
@@ -101,6 +101,27 @@ QPushButton:pressed{
     </property>
     <property name="text">
      <string>Innskráning</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="errorLabel">
+    <property name="geometry">
+     <rect>
+      <x>89</x>
+      <y>170</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	color: red;
+}</string>
+    </property>
+    <property name="text">
+     <string>ERROR: Username or password is incorrect</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

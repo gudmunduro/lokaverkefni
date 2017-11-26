@@ -394,7 +394,7 @@ QPushButton:pressed{
        <string>Kennitala</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="setFromDateButton">
       <property name="geometry">
        <rect>
         <x>160</x>
@@ -422,7 +422,7 @@ QPushButton:pressed{
        <string>10/10/2017</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="setToDateButton">
       <property name="geometry">
        <rect>
         <x>300</x>
