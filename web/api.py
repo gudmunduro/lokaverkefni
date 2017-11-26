@@ -31,3 +31,8 @@ def admin_login():
     if request.forms.username == "admin" and request.forms.password == "ab123":
         login_status = 1
     return json_dumps({"login_status": login_status})
+
+
+@route("/api/download/desktopClient")
+def cars():
+    return static_file("desktop.zip", root="incl/download/")

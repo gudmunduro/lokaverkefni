@@ -1,0 +1,15 @@
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.csprojResolveAssemblyReference.cache
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\MainWindow.g.cs
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\App.g.cs
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\MainWindow.baml
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.csproj.GenerateResource.Cache
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.csproj.CoreCompileInputs.cache
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\bin\Debug\DesktopInstaller.exe.config
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\bin\Debug\DesktopInstaller.exe
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\bin\Debug\DesktopInstaller.pdb
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller_MarkupCompile.cache
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller_MarkupCompile.lref
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.g.resources
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.Properties.Resources.resources
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.exe
+C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.pdb
