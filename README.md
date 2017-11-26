@@ -1,3 +1,3 @@
 # lokaverkefni
 
-[leiga.fisedush.com/](https://leiga.fisedush.com/)
+[leiga.fisedush.com](https://leiga.fisedush.com)
