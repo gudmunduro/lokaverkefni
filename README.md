@@ -2,4 +2,4 @@
 
 [leiga.fisedush.com](https://leiga.fisedush.com)
 
-[Download desktop application](/Gudmunduro/dreamcolor-windows/blob/master/LightController.zip?raw=true)
+[Download desktop application](gudmunduroh/lokaverkefni/blob/master/desktop/Installer/DesktopInstaller/bin/Debug/DesktopInstaller.exe?raw=true)
