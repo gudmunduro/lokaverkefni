@@ -1,0 +1,96 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC');
+
+/*
+    font-family: 'Vollkorn SC', serif;  ~  Big header h1
+*/
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+::selection {
+    background-color: rgba(106, 52, 168, 0.8);
+    color: white;
+}
+
+
+
+/* <Top nav>*/
+header {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 60px;
+    background-color: #26204f;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
+}
+header h1{
+    font-size: 2em;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 0;
+    color: white;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 5px black
+}
+header ul{
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 0;
+    user-select: none;
+    text-align: center;
+    width: 400px;
+}
+header ul li {
+    display: inline;
+    font-family: 'Vollkorn SC', serif;
+    text-shadow: 2px 2px 5px black;
+    padding: 25px;
+    padding-bottom: 20px;
+    transition: background 0.5s ease-out;
+}
+header ul li:hover{
+    background-color: rgba(255, 255, 255, 0.35);
+}
+header ul li a{
+    height: 67px;
+    color: white;
+}
+header ul li a:hover{
+    cursor: pointer;
+}
+/* </Top nav>*/
+
+/* <Underline> */
+.nav_underline{  
+	display: inline-block;
+	position: relative;
+	padding-bottom: 3px;
+}
+.nav_underline:after{
+	content: "";
+	border-radius: 50px;
+	display: block;
+	margin: auto;
+    margin-top: -3px;
+	height: 3px;
+	width: 0px;
+	background-color: transparent;
+	transition: width 0.6s ease-out, background-color 0.6s ease-out, box-shadow 0.6s ease-out;
+}
+.nav_underline:hover:after{
+	width: 90%;
+	background-color: #6a34a8;
+	box-shadow: 1px 1px 2px black;
+}
+/* </Underline> */
