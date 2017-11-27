@@ -12,4 +12,10 @@ def static(file):
 
 if __name__ == '__main__':
     # connect_to_db()
+    print("b4")
+    cac = ConnectAndCommit("CREATE TABLE test_table (col1 varchar(42),col2 int(11))")
+    cac.est_connection()
+    cac.execute_n_commit()
+    cac.close_connection()
+    print("after")
     run()

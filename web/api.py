@@ -3,13 +3,30 @@ import json
 from bottle import *
 
 
-def connect_to_db():
-    conn = pymysql.connect(host="gudmunduro.com",
-                           user="VEF",
-                           password="xb5tDSayArJNYdG6",
-                           db='db',
-                           charset='utf8mb4',
-                           cursorclass=pymysql.cursors.DictCursor)
+class ConnectAndCommit:
+    def __init__(self, query):
+        self.query = query
+        self.connection = None
+        self.cursor = None
+
+    def est_connection(self):
+        self.connection = pymysql.connect(
+            user='VEF',
+            password='ab123',
+            host='gudmunduro.com',
+            database='VEF',
+            charset='utf8mb4'
+        )
+
+    def execute_n_commit(self):
+        self.cursor = self.connection.cursor()
+        result = self.cursor.execute(self.query)
+        self.connection.commit()
+        return result
+
+    def close_connection(self):
+        self.cursor.close()
+        self.connection.close()
 
 
 @route("/api/cars")
