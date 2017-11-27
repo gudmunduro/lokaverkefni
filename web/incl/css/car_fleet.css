@@ -38,14 +38,20 @@ header h1{
     font-size: 2em;
     font-weight: 300;
     text-align: center;
-    margin-top: 0;
+    margin-top: 5px;
+    margin-left: 20px;
     color: white;
     font-family: 'Vollkorn SC', serif;
     text-shadow: 2px 2px 5px black
 }
+header h1 p{
+    display: inline;
+    font-size: 20px;
+}
 header ul{
-    margin: 0 auto;
-    margin-top: 15px;
+    margin: 15px 0 0 0;
+    margin-top: 16px;
+    margin-left: calc(50vw - 451px);
     padding: 0;
     user-select: none;
     text-align: center;
@@ -71,6 +77,8 @@ header ul li a:hover{
 }
 /* </Top nav>*/
 
+
+
 /* <Underline> */
 .nav_underline{  
 	display: inline-block;
@@ -94,3 +102,41 @@ header ul li a:hover{
 	box-shadow: 1px 1px 2px black;
 }
 /* </Underline> */
+
+
+
+/* <carList> */
+.carList{
+    margin: 20px 10px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+.carList div{
+    width: 200px;
+    height: 200px;
+}
+.carList div .img img{
+    width: 170px;
+}
+.carList div .info h2{
+
+}
+.carList div .info p{
+
+}
+.carList div .info a{
+    display: block;
+    margin: 5px auto;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: rebeccapurple;
+    color: white;
+    font-family: 'Vollkorn SC', serif;
+    font-size: 1.2em;
+    width: 140px;
+}
+.carList div .info a:hover{
+    cursor: default;
+}
+/* </carList> */
