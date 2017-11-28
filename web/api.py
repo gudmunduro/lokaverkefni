@@ -28,15 +28,43 @@ class ConnectAndCommit:
         self.cursor.close()
         self.connection.close()
 
-# TODO: SQL Error checker
+
+class Data:
+    def __init__(self):
+        self.errText = None
+        self.cac = None
+
+    def try_for_mysql_errors(self, query):
+        try:
+            self.cac = ConnectAndCommit(query)
+            self.cac.est_connection()
+            self.cac.execute_n_commit()
+            return True
+        except pymysql.MySQLError as err:
+            self.errText = ("Something went wrong :( Error: {}".format(err))
+            if err.args[0] == 1062:
+                self.errText = "Pöntun þegar til.. (Error: {})".format(err.args[0])
+            elif err.args[0] == 1045:
+                self.errText = "Tenging við gagnagrunn ekki leyfð. (Error: {})".format(err.args[0])
+            elif err.args[0] == 2003:
+                self.errText = "Forrit náði ekki að tengjast netinu.. " \
+                               "Vinsamlegast athugaðu nettenginguna þína (Error: {})".format(err.args[0])
+
+            return False
+
+    def send_order(self, data_dict):
+        pass
+
+    def get_car_list(self):
+        query = "SELECT * FROM car_types"
+        if self.try_for_mysql_errors(query):
+            for data in self.cac.cursor:
+                return data
+
 
 @route("/api/cars")
 def cars():
-    # Only a mock-up, not the real code.
-    cac = ConnectAndCommit("SELECT * FROM cars")
-    cac.est_connection()
-    car_list = cac.execute_n_commit()
-    cac.close_connection()
+    car_list = Data().try_for_mysql_errors("SELECT * FROM cars")
     return json.dumps({"cars": car_list})
 
 
@@ -59,3 +87,8 @@ def admin_login():
 @route("/api/download/desktopClient")
 def cars():
     return static_file("desktop.zip", root="incl/download/")
+
+
+@route("/api/car_list")
+def car_list():
+
