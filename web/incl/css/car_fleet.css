@@ -1,7 +1,8 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC');
+﻿@import url('https://fonts.googleapis.com/css?family=Muli|Vollkorn+SC');
 
 /*
     font-family: 'Vollkorn SC', serif;  ~  Big header h1
+    font-family: 'Noto Serif', serif;  ~  Car title
 */
 
 html {
@@ -12,6 +13,8 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background-color: rebeccapurple;
+    background-image: url("../imgs/grainy_background.png");
 }
 a {
     text-decoration: none;
@@ -38,11 +41,13 @@ header h1{
     font-size: 2em;
     font-weight: 300;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 0;
     margin-left: 20px;
     color: white;
     font-family: 'Vollkorn SC', serif;
-    text-shadow: 2px 2px 5px black
+    text-shadow: 2px 2px 5px black;
+    height: 60px;
+    line-height: 60px;
 }
 header h1 p{
     display: inline;
@@ -105,25 +110,47 @@ header ul li a:hover{
 
 
 
+/*<main>*/
+main{
+
+}
+/*</main>*/
+
+
+
 /* <carList> */
-.carList{
-    margin: 20px 10px;
-    width: 100%;
+.carList {
+    margin: 20px auto;
+    padding: 20px;
+    width: calc(100% - 90px);
     display: flex;
     flex-flow: row wrap;
+    background-color: rgba(255, 255, 255, 0.6);
+    min-height: 90%;
+    border-radius: 15px;
 }
 .carList div{
     width: 200px;
-    height: 200px;
+    height: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
 }
 .carList div .img img{
+    display: block;
     width: 170px;
+    margin: 0 auto;
 }
 .carList div .info h2{
-
+    display: block;
+    font-family: 'Muli', sans-serif;
+    font-weight: 300;
+    width: 170px;
+    margin: 10px auto;
 }
 .carList div .info p{
-
+    display: block;
+    font-family: 'Muli', sans-serif;
+    width: 170px;
+    margin: 4px auto;
 }
 .carList div .info a{
     display: block;
@@ -135,6 +162,9 @@ header ul li a:hover{
     font-family: 'Vollkorn SC', serif;
     font-size: 1.2em;
     width: 140px;
+}
+.carList div .info a:first-child{
+    margin-top: 30px;
 }
 .carList div .info a:hover{
     cursor: default;
