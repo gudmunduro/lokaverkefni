@@ -28,10 +28,16 @@ class ConnectAndCommit:
         self.cursor.close()
         self.connection.close()
 
+# TODO: SQL Error checker
 
 @route("/api/cars")
 def cars():
-    return json.dumps({"cars": []})
+    # Only a mock-up, not the real code.
+    cac = ConnectAndCommit("SELECT * FROM cars")
+    cac.est_connection()
+    car_list = cac.execute_n_commit()
+    cac.close_connection()
+    return json.dumps({"cars": car_list})
 
 
 @route("/api/login", method="post")
