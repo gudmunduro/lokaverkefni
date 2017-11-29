@@ -2,9 +2,10 @@
 from api import *
 
 @route("/car_fleet")
+@view("car_fleet")
 def car_fleet():
     cars = Data().get_car_list()
-    return static_file("car_fleet.html", root="./")
+    return dict(cars=cars)
 
 @route("/")
 def main():

@@ -56,7 +56,7 @@ class Data:
         pass
 
     def get_car_list(self):
-        query = "SELECT * FROM car_type inner join categories on car_types.category_id = categories.cat_id"
+        query = "SELECT * FROM car_types inner join categories on car_types.category_id = categories.cat_id"
         if self.try_for_mysql_errors(query):
             fetch = self.cac.cursor.fetchall()
             self.cac.close_connection()
