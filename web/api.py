@@ -56,16 +56,22 @@ class Data:
         pass
 
     def get_car_list(self):
-        query = "SELECT * FROM car_types"
+        query = "SELECT * FROM car_type inner join categories on car_types.category_id = categories.cat_id"
         if self.try_for_mysql_errors(query):
-            for data in self.cac.cursor:
-                return data
+            fetch = self.cac.cursor.fetchall()
+            self.cac.close_connection()
+            """cat_names = []
+            for car in fetch:
+                if self.try_for_mysql_errors("SELECT category_name FROM categories WHERE cat_id ={}".format(car[7])):
+                    cat_names.append(car)
+                    self.cac.close_connection()"""
+            return fetch
 
 
 @route("/api/cars")
 def cars():
-    car_list = Data().try_for_mysql_errors("SELECT * FROM cars")
-    return json.dumps({"cars": car_list})
+    cars = Data().get_car_list()
+    return json.dumps(cars)
 
 
 @route("/api/login", method="post")
@@ -87,8 +93,3 @@ def admin_login():
 @route("/api/download/desktopClient")
 def cars():
     return static_file("desktop.zip", root="incl/download/")
-
-
-@route("/api/car_list")
-def car_list():
-
