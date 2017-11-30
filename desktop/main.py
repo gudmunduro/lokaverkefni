@@ -58,7 +58,7 @@ class LoginWindow(QMainWindow):
 
     def login_button_clicked(self):
         self.thread.start()
-        self.worker.startWork()
+        self.worker.check_login()
         self.thread.start()
 
     def reset(self):
@@ -69,13 +69,13 @@ class LoginWindow(QMainWindow):
 
 class CheckLoginWorkerObject(QObject):
 
-    def __init__(self, subclass, parent=None):
+    def __init__(self, login_window, parent=None):
         super(self.__class__, self).__init__(parent)
-        self.subclass = subclass
+        self.login_window = login_window
 
-    @pyqtSlot()        
-    def startWork(self):
-        post_data = urllib.parse.urlencode({"username": self.subclass.username_text_edit.text(), "password": self.subclass.password_text_edit.text()})
+    @pyqtSlot()
+    def check_login(self):
+        post_data = urllib.parse.urlencode({"username": self.login_window.username_text_edit.text(), "password": self.login_window.password_text_edit.text()})
         rq = urllib.request.Request('https://leiga.fisedush.com/api/admin/login', post_data.encode())
         data = urllib.request.urlopen(rq).read().decode()
         try:
@@ -83,13 +83,13 @@ class CheckLoginWorkerObject(QObject):
             if json_data["login_status"] == 1:
                 self.main_window = MainWindow()
                 self.main_window.show()
-                self.subclass.close()
+                self.login_window.close()
             else:
-                self.subclass.error_label.setText("Villa: Notendanafn eða lykilorð er rangt")
-                self.subclass.error_label.setHidden(False)
+                self.login_window.error_label.setText("Villa: Notendanafn eða lykilorð er rangt")
+                self.login_window.error_label.setHidden(False)
         except:
-            self.subclass.error_label.setText("Óvent villa kom upp")
-            self.subclass.error_label.setHidden(False)
+            self.login_window.error_label.setText("Óvent villa kom upp")
+            self.login_window.error_label.setHidden(False)
 
 
 if __name__ == '__main__':
