@@ -127,7 +127,7 @@ QPushButton:pressed{
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="saveLoginInfoCheckBox">
     <property name="geometry">
      <rect>
       <x>110</x>

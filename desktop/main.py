@@ -1,12 +1,14 @@
 # Lokaverkefni - Guðmundur Óli og Helgi Steinarr - 11/21/2017
 import threading
 import json
+import grequests
 import urllib.request, urllib.error
 from PyQt5.QtCore import QDir, Qt, QTimer, QThread, QObject, pyqtSlot
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 from time import sleep
+from savedatamanager import LoginDataManager
 
 
 # Main
@@ -46,9 +48,10 @@ class LoginWindow(QMainWindow):
         self.error_label = self.findChild(QLabel, "errorLabel")
         self.username_text_edit = self.findChild(QLineEdit, "usernameLineEdit")
         self.password_text_edit = self.findChild(QLineEdit, "passwordLineEdit")
-        self.loginButton = self.findChild(QPushButton, "loginButton")
+        self.login_button = self.findChild(QPushButton, "loginButton")
+        self.save_login_info_check_box = self.findChild(QCheckBox, "saveLoginInfoCheckBox")
 
-        self.loginButton.pressed.connect(self.login_button_clicked)
+        self.login_button.pressed.connect(self.login_button_clicked)
         self.password_text_edit.setEchoMode(QLineEdit.Password)
         self.error_label.setHidden(True)
 
@@ -56,10 +59,15 @@ class LoginWindow(QMainWindow):
         self.thread = QThread()
         self.worker.moveToThread(self.thread)
 
+        login_data_manager = LoginDataManager()
+        if login_data_manager.user_info_saved:
+            self.username_text_edit.setText(login_data_manager.username)
+            self.password_text_edit.setText(login_data_manager.password)
+            self.save_login_info_check_box.setChecked(True)
+
     def login_button_clicked(self):
         self.thread.start()
         self.worker.check_login()
-        self.thread.start()
 
     def reset(self):
         self.username_text_edit.setText("")
@@ -81,6 +89,10 @@ class CheckLoginWorkerObject(QObject):
         try:
             json_data = json.loads(data)
             if json_data["login_status"] == 1:
+                if self.login_window.save_login_info_check_box.isChecked():
+                    login_data_manager = LoginDataManager()
+                    login_data_manager.username = self.login_window.username_text_edit.text()
+                    login_data_manager.password = self.login_window.password_text_edit.text()
                 self.main_window = MainWindow()
                 self.main_window.show()
                 self.login_window.close()
