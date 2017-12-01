@@ -1,13 +1,13 @@
 # Lokaverkefni - Guðmundur Óli og Helgi Steinarr - 11/21/2017
 import threading
 import json
-import grequests
 import urllib.request, urllib.error
 from PyQt5.QtCore import QDir, Qt, QTimer, QThread, QObject, pyqtSlot
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 from time import sleep
+from requests_futures.sessions import FuturesSession
 from savedatamanager import LoginDataManager
 
 
@@ -26,6 +26,17 @@ class MainWindow(QMainWindow):
     def open_date_picker(self):
         self.date_picker_window = DatePickerWindow()
         self.date_picker_window.show()
+
+        self.car_rq_test()
+
+    def car_rq_test(self):
+        session = FuturesSession()
+
+        rq = session.get("https://leiga.fisedush.com/api/cars", background_callback=self.on_load())
+
+    def on_load(session, response):
+        print("!")
+        # print(response)
 
 
 class DatePickerWindow(QMainWindow):
