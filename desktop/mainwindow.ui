@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>592</width>
-    <height>435</height>
+    <width>744</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>591</width>
-      <height>401</height>
+      <width>741</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -59,13 +59,13 @@ QLineEdit:focus{
      <attribute name="title">
       <string>Pantanir</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget_2">
+     <widget class="QTableWidget" name="ordersTableWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>70</y>
-        <width>591</width>
-        <height>251</height>
+        <width>741</width>
+        <height>351</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -111,10 +111,10 @@ QLineEdit:focus{
        </property>
       </column>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="ordersSearchBox">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>199</x>
         <y>20</y>
         <width>311</width>
         <height>31</height>
@@ -139,10 +139,10 @@ QLineEdit:focus{
        <string>Leita</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="ordersSearchButton">
       <property name="geometry">
        <rect>
-        <x>414</x>
+        <x>513</x>
         <y>20</y>
         <width>41</width>
         <height>31</height>
@@ -166,11 +166,11 @@ QPushButton:pressed{
        <string>🔎</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="ordersRemoveButton">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>330</y>
+        <y>430</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -199,13 +199,13 @@ QPushButton:pressed{
      <attribute name="title">
       <string>Bílar</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="carsTableWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>70</y>
-        <width>591</width>
-        <height>301</height>
+        <width>731</width>
+        <height>391</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -214,24 +214,39 @@ QPushButton:pressed{
       <attribute name="verticalHeaderDefaultSectionSize">
        <number>30</number>
       </attribute>
-      <row>
-       <property name="text">
-        <string>AB-123</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>PZ-615</string>
-       </property>
-      </row>
       <column>
        <property name="text">
-        <string>Tegund</string>
+        <string>Gerð</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Staða</string>
+        <string>Framleiðandi</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nafn</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Framleiðsluár</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Hestöfl</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eyðsla</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Drif</string>
        </property>
       </column>
       <column>
@@ -239,11 +254,21 @@ QPushButton:pressed{
         <string>Flokkur</string>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>Flokksnafn</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eldsneyti</string>
+       </property>
+      </column>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="ordersSearchBox_2">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>199</x>
         <y>20</y>
         <width>311</width>
         <height>31</height>
@@ -268,10 +293,10 @@ QLineEdit:focus{
        <string>Leita</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="ordersSearchButton_2">
       <property name="geometry">
        <rect>
-        <x>414</x>
+        <x>513</x>
         <y>20</y>
         <width>41</width>
         <height>31</height>
@@ -303,9 +328,9 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>65</y>
-        <width>113</width>
+        <width>163</width>
         <height>31</height>
        </rect>
       </property>
@@ -316,9 +341,9 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>190</x>
         <y>65</y>
-        <width>113</width>
+        <width>163</width>
         <height>31</height>
        </rect>
       </property>
@@ -329,9 +354,9 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>165</y>
-        <width>113</width>
+        <width>163</width>
         <height>31</height>
        </rect>
       </property>
@@ -345,7 +370,7 @@ QPushButton:pressed{
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>25</y>
         <width>121</width>
         <height>21</height>
@@ -358,7 +383,7 @@ QPushButton:pressed{
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>125</y>
         <width>131</width>
         <height>21</height>
@@ -371,9 +396,9 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_5">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>370</x>
         <y>65</y>
-        <width>113</width>
+        <width>173</width>
         <height>31</height>
        </rect>
       </property>
@@ -384,9 +409,9 @@ QPushButton:pressed{
      <widget class="QLineEdit" name="lineEdit_6">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>560</x>
         <y>65</y>
-        <width>113</width>
+        <width>163</width>
         <height>31</height>
        </rect>
       </property>
@@ -397,7 +422,7 @@ QPushButton:pressed{
      <widget class="QPushButton" name="setFromDateButton">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>215</x>
         <y>165</y>
         <width>113</width>
         <height>31</height>
@@ -425,7 +450,7 @@ QPushButton:pressed{
      <widget class="QPushButton" name="setToDateButton">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>405</x>
         <y>165</y>
         <width>113</width>
         <height>31</height>
@@ -453,8 +478,8 @@ QPushButton:pressed{
      <widget class="QPushButton" name="pushButton_4">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>310</y>
+        <x>315</x>
+        <y>400</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -495,7 +520,7 @@ QPushButton:pressed{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>592</width>
+     <width>744</width>
      <height>21</height>
     </rect>
    </property>

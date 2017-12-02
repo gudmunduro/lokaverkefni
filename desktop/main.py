@@ -19,24 +19,38 @@ class MainWindow(QMainWindow):
         loadUi("mainwindow.ui", self)
         self.set_from_date_button = self.findChild(QPushButton, "setFromDateButton")
         self.set_to_date_button = self.findChild(QPushButton, "setToDateButton")
+        self.cars_table = self.findChild(QTableWidget, "carsTableWidget")
 
         self.set_from_date_button.pressed.connect(self.open_date_picker)
         self.set_to_date_button.pressed.connect(self.open_date_picker)
+
+        self.car_rq_test()
 
     def open_date_picker(self):
         self.date_picker_window = DatePickerWindow()
         self.date_picker_window.show()
 
-        self.car_rq_test()
-
     def car_rq_test(self):
         session = FuturesSession()
 
-        rq = session.get("https://leiga.fisedush.com/api/cars", background_callback=self.on_load())
+        rq = session.get("https://leiga.fisedush.com/api/cars", background_callback=self.on_load)
 
-    def on_load(session, response):
-        print("!")
-        # print(response)
+    def on_load(self, session, response):
+        cars = response.json()
+        for car in cars:
+            row_count = self.cars_table.rowCount()
+            self.cars_table.insertRow(row_count)
+            self.cars_table.setItem(row_count, 0, QTableWidgetItem(str(car[0])))
+            self.cars_table.setItem(row_count, 1, QTableWidgetItem(str(car[1])))
+            self.cars_table.setItem(row_count, 2, QTableWidgetItem(str(car[2])))
+            self.cars_table.setItem(row_count, 3, QTableWidgetItem(str(car[3])))
+            self.cars_table.setItem(row_count, 4, QTableWidgetItem(str(car[4])))
+            self.cars_table.setItem(row_count, 5, QTableWidgetItem(str(car[5])))
+            self.cars_table.setItem(row_count, 6, QTableWidgetItem(str(car[6])))
+            self.cars_table.setItem(row_count, 7, QTableWidgetItem(str(car[7])))
+            self.cars_table.setItem(row_count, 8, QTableWidgetItem(str(car[11])))
+            self.cars_table.setItem(row_count, 9, QTableWidgetItem(str(car[8])))
+            self.cars_table.setColumnCount(10)
 
 
 class DatePickerWindow(QMainWindow):
