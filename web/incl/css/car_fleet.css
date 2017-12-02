@@ -13,7 +13,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: rebeccapurple;
+    background-color: #0D47A1;
     background-image: url("../imgs/grainy_background.png");
 }
 a {
@@ -39,6 +39,7 @@ header {
     overflow: hidden;
     display: flex;
     flex-flow: row wrap;
+    z-index: 2;
 }
 header h1{
     font-size: 2em;
@@ -128,9 +129,10 @@ main{
     width: calc(100% - 90px);
     display: flex;
     flex-flow: row wrap;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.12);
     min-height: 90%;
     border-radius: 15px;
+    z-index: 0;
 }
 .carList div{
     width: 200px;
@@ -141,7 +143,7 @@ main{
     display: block;
     width: 170px;
     margin: 0 auto;
-    border: 1px solid rgb(210, 178, 223);
+    1px solid rgb(54, 111, 197);
     border-radius: 5px;
 }
 .carList div .info h2{
@@ -150,12 +152,14 @@ main{
     font-weight: 300;
     width: 170px;
     margin: 10px auto;
+    color: white;
 }
 .carList div .info p{
     display: block;
     font-family: 'Muli', sans-serif;
     width: 170px;
     margin: 4px auto;
+    color: #E0E0E0;
 }
 .carList div .info a{
     display: block;
@@ -171,6 +175,7 @@ main{
     transition: transform 0.3s ease-out, background-color 0.3s ease-out;
 }
 .carList div .info a.moreInfo{
+    margin-top: 30px;
     background-color: #3F51B5;
 }
 .carList div .info a.order{
@@ -193,9 +198,37 @@ main{
 .carInfo {
     position: fixed;
     top: 60px;
-    left: calc(100% - 400px);
+    left: calc(50% - 400px);
     width: 800px;
     height: 400px;
     background-color: #26204f;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 0 8px black;
+    z-index: 1;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 /* </carInfo> */
+
+
+
+/* <Scrollbar> */
+#sb-3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+#sb-3::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+#sb-3::-webkit-scrollbar-thumb {
+    background-color: #6a34a8;
+    transition: background-color 0.3s ease-out;
+}
+#sb-3::-webkit-scrollbar-thumb:hover {
+    background-color: #510da0;
+}
+#sb-3::-webkit-scrollbar-thumb:active {
+    background-color: #1b013a;
+}
+/* </Scrollbar> */

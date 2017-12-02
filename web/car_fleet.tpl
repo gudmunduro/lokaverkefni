@@ -36,7 +36,7 @@
                         <p>Árgerð: {{ str(car[3]) }}</p>
                         <p>Drif: {{ str(car[6]) }}</p>
                         <p>Eldsneyti: {{ str(car[8]) }}</p>
-                        <a class="moreInfo">Skoða nánar</a>
+                        <a onclick="showCarInfoView({{ str(car[0]) }})" class="moreInfo">Skoða nánar</a>
                         <a class="order">Panta</a>
                     </section>
                 </div>
