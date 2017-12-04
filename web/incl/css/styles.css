@@ -126,11 +126,11 @@ main{
 }
 main div{
     position: absolute;
-    margin: 0 auto;
     background-color: rebeccapurple;
     background-image: url("../imgs/grainy_background.png");
     transition: transform 0.3s ease-out;
-    padding: 25px;
+    width: 100%;
+    padding: 25px 0px 25px 0px;
 }
 main div article{
     max-width: 1024px;
