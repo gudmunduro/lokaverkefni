@@ -2,13 +2,15 @@
 import threading
 import json
 import urllib.request, urllib.error
-from PyQt5.QtCore import QDir, Qt, QTimer, QThread, QObject, pyqtSlot
+from PyQt5.QtCore import QDir, Qt, QTimer, QThread, QObject, pyqtSlot, pyqtSignal, QDate
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 from time import sleep
 from requests_futures.sessions import FuturesSession
+from datetime import datetime
 from savedatamanager import LoginDataManager
+from datepicker import show_date_picker
 
 
 # Main
@@ -21,14 +23,36 @@ class MainWindow(QMainWindow):
         self.set_to_date_button = self.findChild(QPushButton, "setToDateButton")
         self.cars_table = self.findChild(QTableWidget, "carsTableWidget")
 
-        self.set_from_date_button.pressed.connect(self.open_date_picker)
-        self.set_to_date_button.pressed.connect(self.open_date_picker)
+        self.set_from_date_button.pressed.connect(self.set_from_date_button_clicked)
+        self.set_to_date_button.pressed.connect(self.set_to_date_button_clicked)
+
+        date = datetime.now()
+        self.set_from_date_button.setText(str(date.day) + "/" + str(date.month) + "/" + str(date.year))
+        self.set_to_date_button.setText(str(date.day + 7) + "/" + str(date.month) + "/" + str(date.year))
+
+        self.from_date = QDate(date.day, date.month, date.year)
+        self.to_date = QDate(date.day + 7, date.month, date.year)
 
         self.car_rq_test()
 
-    def open_date_picker(self):
-        self.date_picker_window = DatePickerWindow()
-        self.date_picker_window.show()
+    def set_from_date_button_clicked(self):
+        def on_finish(date):
+            self.from_date = date
+            self.set_from_date_button.setText(str(date.day()) + "/" + str(date.month()) + "/" + str(date.year()))
+            self.update_day_count()
+        show_date_picker(on_finish)
+
+    def set_to_date_button_clicked(self):
+        def on_finish(date):
+            self.to_date = date
+            self.set_to_date_button.setText(str(date.day()) + "/" + str(date.month()) + "/" + str(date.year()))
+            self.update_day_count()
+        show_date_picker(on_finish)
+
+    def update_day_count(self):
+        day_count_label = self.findChild(QLabel, "dayCountLabel")
+        count = self.to_date.day() - self.from_date.day()
+        day_count_label.setText(str(count))
 
     def car_rq_test(self):
         session = FuturesSession()
@@ -53,17 +77,6 @@ class MainWindow(QMainWindow):
             self.cars_table.setColumnCount(10)
 
 
-class DatePickerWindow(QMainWindow):
-
-    def __init__(self):
-        super(DatePickerWindow, self).__init__()
-        loadUi("datepicker.ui", self)
-        self.cancel_button = self.findChild(QPushButton, "cancelButton")
-        self.confirm_button = self.findChild(QPushButton, "confirmButton")
-
-        self.cancel_button.pressed.connect(self.close)
-
-
 # Login
 class LoginWindow(QMainWindow):
 
@@ -80,10 +93,6 @@ class LoginWindow(QMainWindow):
         self.password_text_edit.setEchoMode(QLineEdit.Password)
         self.error_label.setHidden(True)
 
-        self.worker = CheckLoginWorkerObject(self)
-        self.thread = QThread()
-        self.worker.moveToThread(self.thread)
-
         login_data_manager = LoginDataManager()
         if login_data_manager.user_info_saved:
             self.username_text_edit.setText(login_data_manager.username)
@@ -91,8 +100,57 @@ class LoginWindow(QMainWindow):
             self.save_login_info_check_box.setChecked(True)
 
     def login_button_clicked(self):
-        self.thread.start()
-        self.worker.check_login()
+        self.temp_login()
+        return
+        session = FuturesSession()
+
+        self.open_window = pyqtSignal(object)
+        self.open_window.connect(self.open_main_window)
+
+        post_data = "username=" + self.username_text_edit.text() + "&password=" + self.password_text_edit.text()
+        rq = session.post("https://leiga.fisedush.com/api/admin/login", data=post_data,
+                          background_callback=self.on_login_rq_complete)
+
+    def on_login_rq_complete(self, session, response):
+        data = response.json()
+        try:
+            if data["login_status"] == 1:
+                if self.save_login_info_check_box.isChecked():
+                    login_data_manager = LoginDataManager()
+                    login_data_manager.username = self.username_text_edit.text()
+                    login_data_manager.password = self.password_text_edit.text()
+                self.open_window.emit()
+            else:
+                self.error_label.setText("Villa: Notendanafn eða lykilorð er rangt")
+                self.error_label.setHidden(False)
+        except:
+            self.error_label.setText("Óvent villa kom upp")
+            self.error_label.setHidden(False)
+
+    def temp_login(self):
+        post_data = urllib.parse.urlencode({"username": self.username_text_edit.text(),
+                                            "password": self.password_text_edit.text()})
+        rq = urllib.request.Request('https://leiga.fisedush.com/api/admin/login', post_data.encode())
+        data = urllib.request.urlopen(rq).read().decode()
+        try:
+            json_data = json.loads(data)
+            if json_data["login_status"] == 1:
+                if self.save_login_info_check_box.isChecked():
+                    login_data_manager = LoginDataManager()
+                    login_data_manager.username = self.username_text_edit.text()
+                    login_data_manager.password = self.password_text_edit.text()
+                self.open_main_window()
+            else:
+                self.error_label.setText("Villa: Notendanafn eða lykilorð er rangt")
+                self.error_label.setHidden(False)
+        except:
+            self.error_label.setText("Óvent villa kom upp")
+            self.error_label.setHidden(False)
+
+    def open_main_window(self):
+        self.main_window = MainWindow()
+        self.main_window.show()
+        self.hide()
 
     def reset(self):
         self.username_text_edit.setText("")
