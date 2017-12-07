@@ -30,29 +30,49 @@ class MainWindow(QMainWindow):
         self.set_from_date_button.setText(str(date.day) + "/" + str(date.month) + "/" + str(date.year))
         self.set_to_date_button.setText(str(date.day + 7) + "/" + str(date.month) + "/" + str(date.year))
 
-        self.from_date = QDate(date.day, date.month, date.year)
-        self.to_date = QDate(date.day + 7, date.month, date.year)
+        self.from_date = QDate(date.year, date.month, date.day)
+        self.to_date = QDate(date.year, date.month, date.day + 7)
+
+        self.update_day_count_label()
 
         self.car_rq_test()
 
     def set_from_date_button_clicked(self):
         def on_finish(date):
+            last_date = self.from_date
             self.from_date = date
             self.set_from_date_button.setText(str(date.day()) + "/" + str(date.month()) + "/" + str(date.year()))
-            self.update_day_count()
+            if self.day_count < 1:
+                QMessageBox.about(self, "Villa", "Dagarnir geta ekki verið færri en einn")
+                self.from_date = last_date
+                self.set_from_date_button.setText(str(self.to_date.day()) + "/" + str(self.to_date.month())
+                                                + "/" + str(self.to_date.year()))
+            self.update_day_count_label()
+            print(self.from_date.toString())
+            print(self.to_date.toString())
         show_date_picker(on_finish)
 
     def set_to_date_button_clicked(self):
         def on_finish(date):
+            last_date = self.to_date
             self.to_date = date
             self.set_to_date_button.setText(str(date.day()) + "/" + str(date.month()) + "/" + str(date.year()))
-            self.update_day_count()
+            if self.day_count < 1:
+                QMessageBox.about(self, "Villa", "Dagarnir geta ekki verið færri en einn")
+                self.to_date = last_date
+                self.set_to_date_button.setText(str(self.to_date.day()) + "/" + str(self.to_date.month())
+                                                + "/" + str(self.to_date.year()))
+            self.update_day_count_label()
         show_date_picker(on_finish)
 
-    def update_day_count(self):
+    @property
+    def day_count(self):
+        count = (self.to_date.day() - self.from_date.day())
+        return (count if count != 0 else 1)
+
+    def update_day_count_label(self):
         day_count_label = self.findChild(QLabel, "dayCountLabel")
-        count = self.to_date.day() - self.from_date.day()
-        day_count_label.setText(str(count))
+        day_count_label.setText(str(self.day_count))
 
     def car_rq_test(self):
         session = FuturesSession()
