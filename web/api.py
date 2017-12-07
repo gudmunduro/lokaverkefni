@@ -19,9 +19,9 @@ class ConnectAndCommit:
             charset='utf8mb4'
         )
 
-    def execute_n_commit(self, params):
+    def execute_n_commit(self):
         self.cursor = self.connection.cursor()
-        result = self.cursor.execute(self.query, params)
+        result = self.cursor.execute(self.query, self.params)
         self.connection.commit()
         return result
 
@@ -35,7 +35,7 @@ class Data:
         self.errText = None
         self.cac = None
 
-    def try_for_mysql_errors(self, query, params=(,)):
+    def try_for_mysql_errors(self, query, params=tuple()):
         try:
             self.cac = ConnectAndCommit(query, params)
             self.cac.est_connection()
@@ -53,10 +53,14 @@ class Data:
 
             return False
 
-    def send_order(self, customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date, order_date, return_date, car_id, driver_id_nr):
-        query = """INSERT INTO orders (customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date, order_date, return_date, car_id, driver_id_nr)
+    def send_order(self, customer_fullname, customer_phone, customer_email, nationality, card_number, CVN,
+                   card_exp_date, order_date, return_date, car_id, driver_id_nr):
+        query = """INSERT INTO orders (customer_fullname, customer_phone, customer_email, nationality, card_number, CVN,
+         card_exp_date, order_date, return_date, car_id, driver_id_nr)
         values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-        if self.try_for_mysql_errors(query, (customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date, order_date, return_date, car_id, driver_id_nr)):
+        if self.try_for_mysql_errors(query, (customer_fullname, customer_phone, customer_email, nationality,
+                                             card_number, CVN, card_exp_date, order_date, return_date, car_id,
+                                             driver_id_nr)):
             self.cac.close_connection()
             return True
         self.cac.close_connection()
@@ -69,11 +73,12 @@ class Data:
             self.cac.close_connection()
             return fetch
 
+
 def post_data_exists(*args):
     for a in args:
-        if request.forms.get(a) == None:
-            return False;
-    return True;
+        if request.forms.get(a) is None:
+            return False
+    return True
 
 
 @route("/api/cars")
@@ -82,11 +87,24 @@ def cars():
     return json.dumps(cars)
 
 
-@route("/api/order")
+@route("/api/order", method="post")
 def order():
-    if not post_data_exists("customer_fullname", "customer_phone", "customer_email", "nationality", "card_number", "CVN", "card_exp_date", "order_date", "return_date", "car_id", "driver_id_nr"):
+    if not post_data_exists("customer_fullname", "customer_phone", "customer_email", "nationality", "card_number",
+                            "CVN", "card_exp_date", "order_date", "return_date", "car_id", "driver_id_nr"):
         return json.dumps({"order_status": 0, "error_msg": "Order failed"})
-    Data().send_order()
+    customer_fullname = request.forms.get("customer_fullname")
+    customer_phone = request.forms.get("customer_phone")
+    customer_email = request.forms.get("customer_email")
+    nationality = request.forms.get("nationality")
+    card_number = request.forms.get("card_number")
+    CVN = request.forms.get("CVN")
+    card_exp_date = request.forms.get("card_exp_date")
+    order_date = request.forms.get("order_date")
+    return_date = request.forms.get("return_date")
+    car_id = request.forms.get("car_id")
+    driver_id_nr = request.forms.get("driver_id_nr")
+    Data().send_order(customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date,
+                      order_date, return_date, car_id, driver_id_nr)
 
 
 @route("/api/login", method="post")
