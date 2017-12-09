@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>744</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>741</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>1</horstretch>
+      <verstretch>1</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>1</width>
+      <height>1</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTabWidget{
+	background-color: #F5F5F5;
+}
+
+QLineEdit{
+	font-size: 11pt;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+	height: 31pt;
+}
+
+QLineEdit:focus{
+	border-bottom-color: #2196F3;
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Pantanir</string>
+     </attribute>
+     <widget class="QTableWidget" name="ordersTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>741</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>AB-123</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>PZ-615</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Tegund</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Flokkur</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Frá</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Til</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLineEdit" name="ordersSearchBox">
+      <property name="geometry">
+       <rect>
+        <x>199</x>
+        <y>20</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{
+	font-size: 11pt;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+QLineEdit:focus{
+	border-bottom-color: #2196F3;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Leita</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ordersSearchButton">
+      <property name="geometry">
+       <rect>
+        <x>513</x>
+        <y>20</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>🔎</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ordersRemoveButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>430</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #F44336;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+QPushButton:hover{
+	background-color: #D32F2F;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Taka út</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Bílar</string>
+     </attribute>
+     <widget class="QTableWidget" name="carsTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>731</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Gerð</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Framleiðandi</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nafn</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Framleiðsluár</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Hestöfl</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eyðsla</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Drif</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Flokkur</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Flokksnafn</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eldsneyti</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLineEdit" name="ordersSearchBox_2">
+      <property name="geometry">
+       <rect>
+        <x>199</x>
+        <y>20</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{
+	font-size: 11pt;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+QLineEdit:focus{
+	border-bottom-color: #2196F3;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Leita</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ordersSearchButton_2">
+      <property name="geometry">
+       <rect>
+        <x>513</x>
+        <y>20</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>🔎</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Bæta við pöntun</string>
+     </attribute>
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>65</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Nafn</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>65</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Sími</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>215</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Bílnúmer</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>25</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Upplýsingar um leigjanda</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>175</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Upplýsingar um leigu</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_5">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>65</y>
+        <width>173</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Netfang</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setFromDateButton">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>215</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: none;
+	color: black;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+	font-size: 9pt;
+	text-align: left;
+}
+QPushButton:pressed{
+	border-bottom-color: #2196F3;
+}</string>
+      </property>
+      <property name="text">
+       <string>10/10/2017</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="setToDateButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>215</y>
+        <width>173</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: none;
+	color: black;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+	font-size: 9pt;
+	text-align: left;
+}
+QPushButton:pressed{
+	border-bottom-color: #2196F3;
+}</string>
+      </property>
+      <property name="text">
+       <string>20/10/2017</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>315</x>
+        <y>400</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #03A9F4;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+QPushButton:hover{
+	background-color: #0288D1;
+}
+QPushButton:pressed{
+	background-color: black;
+}</string>
+      </property>
+      <property name="text">
+       <string>Bæta við pöntun</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dayCountLabel">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>250</y>
+        <width>31</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fjöldi daga: </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>65</y>
+        <width>173</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Þjóðerni</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>744</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSta_a">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuSta_a"/>
+  </widget>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

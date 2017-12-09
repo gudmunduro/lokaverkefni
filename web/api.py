@@ -103,8 +103,10 @@ def order():
     return_date = request.forms.get("return_date")
     car_id = request.forms.get("car_id")
     driver_id_nr = request.forms.get("driver_id_nr")
-    Data().send_order(customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date,
+    data = Data()
+    status = data.send_order(customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date,
                       order_date, return_date, car_id, driver_id_nr)
+    return json.dumps({"order_status": status, "error_msg": data.errText})
 
 
 @route("/api/login", method="post")

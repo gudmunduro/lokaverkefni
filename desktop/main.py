@@ -68,7 +68,7 @@ class MainWindow(QMainWindow):
     @property
     def day_count(self):
         count = (self.to_date.day() - self.from_date.day())
-        return (count if count != 0 else 1)
+        return count if count != 0 else 1
 
     def update_day_count_label(self):
         day_count_label = self.findChild(QLabel, "dayCountLabel")
