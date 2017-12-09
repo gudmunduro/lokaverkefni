@@ -139,11 +139,15 @@ main{
     height: 400px;
     padding: 10px;
 }
+.carList div .img{
+    height: 104px;
+}
 .carList div .img img{
     display: block;
     width: 170px;
+    max-height: 104px;
     margin: 0 auto;
-    1px solid rgb(54, 111, 197);
+    border: 1px solid rgb(54, 111, 197);
     border-radius: 5px;
 }
 .carList div .info h2{

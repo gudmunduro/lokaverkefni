@@ -15,8 +15,10 @@ def car_fleet():
 
 
 @route("/order")
+@view("order")
 def order():
-    return static_file("order.html", root="./")
+    cars = Data().get_car_list()
+    return dict(cars=cars)
 
 
 @route("/incl/<file:path>")

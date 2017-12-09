@@ -28,15 +28,15 @@
                 % for car in cars:
 				<div>
                     <section class="img">
-                        <img src="incl/imgs/agerars-temp.jpg">
+                        <img src="incl/imgs/{{ str(car[12])}}">
                     </section>
                     <section class="info">
-                        <h2>{{ str(car[1]) + " " + str(car[2]) }}</h2>
-                        <p>Hestöfl: {{ str(car[4]) }}</p>
-                        <p>Árgerð: {{ str(car[3]) }}</p>
-                        <p>Drif: {{ str(car[6]) }}</p>
-                        <p>Eldsneyti: {{ str(car[8]) }}</p>
-                        <a onclick="showCarInfoView({{ str(car[0]) }})" class="moreInfo">Skoða nánar</a>
+                        <h2>{{ str(car[4]) + " " + str(car[5]) }}</h2>
+                        <p>Hestöfl: {{ str(car[7]) }}</p>
+                        <p>Árgerð: {{ str(car[6]) }}</p>
+                        <p>Drif: {{ str(car[9]) }}</p>
+                        <p>Eldsneyti: {{ str(car[11]) }}</p>
+                        <a onclick="showCarInfoView({{ str(car[3]) }})" class="moreInfo">Skoða nánar</a>
                         <a class="order">Panta</a>
                     </section>
                 </div>
