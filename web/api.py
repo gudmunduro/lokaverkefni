@@ -44,12 +44,12 @@ class Data:
         except pymysql.MySQLError as err:
             self.errText = ("Something went wrong :( Error: {}".format(err))
             if err.args[0] == 1062:
-                self.errText = "Pöntun þegar til.. (Error: {})".format(err.args[0])
+                self.errText = "PÃ¶ntun Ã¾egar til.. (Error: {})".format(err.args[0])
             elif err.args[0] == 1045:
-                self.errText = "Tenging við gagnagrunn ekki leyfð. (Error: {})".format(err.args[0])
+                self.errText = "Tenging viÃ° gagnagrunn ekki leyfÃ°. (Error: {})".format(err.args[0])
             elif err.args[0] == 2003:
-                self.errText = "Forrit náði ekki að tengjast netinu.. " \
-                               "Vinsamlegast athugaðu nettenginguna þína (Error: {})".format(err.args[0])
+                self.errText = "Forrit nÃ¡Ã°i ekki aÃ° tengjast netinu.. " \
+                               "Vinsamlegast athugaÃ°u nettenginguna Ã¾Ã­na (Error: {})".format(err.args[0])
 
             return False
 
@@ -67,11 +67,26 @@ class Data:
         return False
 
     def get_car_list(self):
-        query = "SELECT * FROM car_types inner join categories on car_types.category_id = categories.cat_id"
+        query = """SELECT * FROM cars
+        inner join car_types on cars.car_type = car_types.type_id
+        inner join categories on car_types.category_id = categories.cat_id"""
         if self.try_for_mysql_errors(query):
             fetch = self.cac.cursor.fetchall()
             self.cac.close_connection()
             return fetch
+        return []
+
+    def get_car_info(self, id):
+        query = """SELECT * FROM cars
+                inner join car_types on cars.car_type = car_types.type_id
+                inner join categories on car_types.category_id = categories.cat_id
+                where cars.car_id = %s"""
+        if self.try_for_mysql_errors(query, tuple(id)):
+            fetch = self.cac.cursor.fetchall()
+            self.cac.close_connection()
+            return fetch
+        self.cac.close_connection()
+        return []
 
 
 def post_data_exists(*args):
@@ -83,8 +98,18 @@ def post_data_exists(*args):
 
 @route("/api/cars")
 def cars():
-    cars = Data().get_car_list()
+    data = Data()
+    cars = data.get_car_list()
     return json.dumps(cars)
+
+
+@route("/api/car/<id>")
+def car(id):
+    data = Data()
+    car_info = data.get_car_info(id)
+    if len(car_info) > 0:
+        return json_dumps(car_info[0])
+    return "[]"
 
 
 @route("/api/order", method="post")
