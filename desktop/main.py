@@ -22,9 +22,11 @@ class MainWindow(QMainWindow):
         self.set_from_date_button = self.findChild(QPushButton, "setFromDateButton")
         self.set_to_date_button = self.findChild(QPushButton, "setToDateButton")
         self.cars_table = self.findChild(QTableWidget, "carsTableWidget")
+        self.send_order_button = self.findChild(QPushButton, "sendOrderButton")
 
         self.set_from_date_button.pressed.connect(self.set_from_date_button_clicked)
         self.set_to_date_button.pressed.connect(self.set_to_date_button_clicked)
+        self.send_order_button.pressed.connect(self.send_order_data)
 
         date = datetime.now()
         self.set_from_date_button.setText(str(date.day) + "/" + str(date.month) + "/" + str(date.year))
@@ -35,7 +37,9 @@ class MainWindow(QMainWindow):
 
         self.update_day_count_label()
 
-        self.car_rq_test()
+        self.load_car_data()
+
+        self.car_plates = {}
 
     def set_from_date_button_clicked(self):
         def on_finish(date):
@@ -74,27 +78,59 @@ class MainWindow(QMainWindow):
         day_count_label = self.findChild(QLabel, "dayCountLabel")
         day_count_label.setText(str(self.day_count))
 
-    def car_rq_test(self):
+    def load_car_data(self):
         session = FuturesSession()
 
-        rq = session.get("https://leiga.fisedush.com/api/cars", background_callback=self.on_load)
+        rq = session.get("https://leiga.fisedush.com/api/cars", background_callback=self.on_car_data_load)
 
-    def on_load(self, session, response):
+    def send_order_data(self):
+        session = FuturesSession()
+
+        customer_fullname = self.findChild(QLineEdit, "nameLineEdit").text()
+        customer_phone = self.findChild(QLineEdit, "phoneLineEdit").text()
+        customer_email = self.findChild(QLineEdit, "emailLineEdit").text()
+        nationality = self.findChild(QLineEdit, "nationalityLineEdit").text()
+        card_exp_date = self.findChild(QLineEdit, "expDateLineEdit").text()
+        order_date = str(self.from_date.day()) + "-" + str(self.from_date.month()) + "-" + str(self.from_date.month())
+        return_date = str(self.to_date.day()) + "-" + str(self.to_date.month()) + "-" + str(self.to_date.month())
+        car_id = str(1)
+        driver_id_nr = self.findChild(QLineEdit, "driverIdLineEdit").text()
+        cvn = self.findChild(QLineEdit, "cvnLineEdit").text()
+        card_number = self.findChild(QLineEdit, "cardNumberLineEdit").text()
+
+        data = """customer_fullname=%s&customer_phone=%s&customer_email=%s&nationality=%s&card_number=%s&CVN=%s
+        &card_exp_date=%s&order_date=%s&return_date=%s&car_id=%s&driver_id_nr=%s""" % (customer_fullname, customer_phone,
+                customer_email, nationality, card_number, cvn, card_exp_date, order_date, return_date, car_id, driver_id_nr)
+
+        rq = session.post("https://leiga.fisedush.com/api/order", data=data, background_callback=self.on_order_data_load)
+
+    def on_car_data_load(self, session, response):
         cars = response.json()
-        for car in cars:
+        print(len(cars))
+        self.car_plates = {}
+        for c in range(len(cars)):
+            car = cars[c]
             row_count = self.cars_table.rowCount()
             self.cars_table.insertRow(row_count)
-            self.cars_table.setItem(row_count, 0, QTableWidgetItem(str(car[0])))
-            self.cars_table.setItem(row_count, 1, QTableWidgetItem(str(car[1])))
-            self.cars_table.setItem(row_count, 2, QTableWidgetItem(str(car[2])))
-            self.cars_table.setItem(row_count, 3, QTableWidgetItem(str(car[3])))
-            self.cars_table.setItem(row_count, 4, QTableWidgetItem(str(car[4])))
-            self.cars_table.setItem(row_count, 5, QTableWidgetItem(str(car[5])))
-            self.cars_table.setItem(row_count, 6, QTableWidgetItem(str(car[6])))
-            self.cars_table.setItem(row_count, 7, QTableWidgetItem(str(car[7])))
-            self.cars_table.setItem(row_count, 8, QTableWidgetItem(str(car[11])))
-            self.cars_table.setItem(row_count, 9, QTableWidgetItem(str(car[8])))
+            self.cars_table.setItem(row_count, 0, QTableWidgetItem(str(car[3])))
+            self.cars_table.setItem(row_count, 1, QTableWidgetItem(str(car[4])))
+            self.cars_table.setItem(row_count, 2, QTableWidgetItem(str(car[5])))
+            self.cars_table.setItem(row_count, 3, QTableWidgetItem(str(car[6])))
+            self.cars_table.setItem(row_count, 4, QTableWidgetItem(str(car[7])))
+            self.cars_table.setItem(row_count, 5, QTableWidgetItem(str(car[8])))
+            self.cars_table.setItem(row_count, 6, QTableWidgetItem(str(car[9])))
+            self.cars_table.setItem(row_count, 7, QTableWidgetItem(str(car[10])))
+            self.cars_table.setItem(row_count, 8, QTableWidgetItem(str(car[14])))
+            self.cars_table.setItem(row_count, 9, QTableWidgetItem(str(car[11])))
             self.cars_table.setColumnCount(10)
+
+            try:
+                self.car_plates.update({car[3]: str(self.car_plates[1])})
+            except KeyError as e:
+                print("ERROR:", str(e))
+
+    def on_order_data_load(self, session, response):
+        print(response.content)
 
 
 # Login

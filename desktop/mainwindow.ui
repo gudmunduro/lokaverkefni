@@ -325,7 +325,7 @@ QPushButton:pressed{
      <attribute name="title">
       <string>Bæta við pöntun</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="nameLineEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -338,7 +338,7 @@ QPushButton:pressed{
        <string>Nafn</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="phoneLineEdit">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -351,11 +351,11 @@ QPushButton:pressed{
        <string>Sími</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="carPlateEmailLineEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>165</y>
+        <y>215</y>
         <width>163</width>
         <height>31</height>
        </rect>
@@ -384,7 +384,7 @@ QPushButton:pressed{
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>125</y>
+        <y>175</y>
         <width>131</width>
         <height>21</height>
        </rect>
@@ -393,7 +393,7 @@ QPushButton:pressed{
        <string>Upplýsingar um leigu</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="emailLineEdit">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -406,24 +406,11 @@ QPushButton:pressed{
        <string>Netfang</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>65</y>
-        <width>163</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Kennitala</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="setFromDateButton">
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>165</y>
+        <y>215</y>
         <width>163</width>
         <height>31</height>
        </rect>
@@ -449,7 +436,7 @@ QPushButton:pressed{
       <property name="geometry">
        <rect>
         <x>370</x>
-        <y>165</y>
+        <y>215</y>
         <width>173</width>
         <height>31</height>
        </rect>
@@ -471,7 +458,7 @@ QPushButton:pressed{
        <string>20/10/2017</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="sendOrderButton">
       <property name="geometry">
        <rect>
         <x>315</x>
@@ -503,7 +490,7 @@ QPushButton:pressed{
       <property name="geometry">
        <rect>
         <x>450</x>
-        <y>200</y>
+        <y>250</y>
         <width>31</width>
         <height>20</height>
        </rect>
@@ -522,13 +509,91 @@ QPushButton:pressed{
       <property name="geometry">
        <rect>
         <x>360</x>
-        <y>200</y>
+        <y>250</y>
         <width>61</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>Fjöldi daga: </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="nationalityLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>65</y>
+        <width>173</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Þjóðerni</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="driverIdLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Ökunúmer</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="cardNumberLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>330</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Kortanúmer</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>290</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Kortaupplýsinga</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="expDateLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>330</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Útrennsludagur</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="cvnLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>330</y>
+        <width>163</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>CVN</string>
       </property>
      </widget>
     </widget>
