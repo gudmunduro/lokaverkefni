@@ -17,7 +17,6 @@ var API = {
         rq.open("get", "/api/car/" + id, true)
         rq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         rq.onload = function () {
-            console.log(rq.responseText)
             var data = JSON.parse(rq.responseText)
             onLoad(data)
         }

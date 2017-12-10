@@ -308,6 +308,7 @@ main{
 }
 .carInfo .closeButton:hover{
     background-color: rgba(106,52,168, 0.65);
+    cursor: default;
 }
 .carInfo .closeButton:hover svg, .carInfo .closeButton:hover i{
     transform: translateY(0);

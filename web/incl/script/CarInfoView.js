@@ -1,4 +1,6 @@
 ﻿
+var currentCarInfoView = null;
+
 class CarInfoView {
 
     constructor(carId) {
@@ -130,6 +132,16 @@ class CarInfoView {
 
 
 function showCarInfoView(carId) {
-    var carInfoView = new CarInfoView(carId);
-    carInfoView.hidden = false;
+    function createNew()
+    {
+        currentCarInfoView = new CarInfoView(carId);
+        currentCarInfoView.hidden = false;
+    }
+    if (currentCarInfoView != null && currentCarInfoView.hidden == false)
+    {
+        currentCarInfoView.hidden = true;
+        setTimeout(createNew, 300);
+        return;
+    }
+    createNew();
 }
