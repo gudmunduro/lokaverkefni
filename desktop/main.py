@@ -13,6 +13,9 @@ from savedatamanager import LoginDataManager
 from datepicker import show_date_picker
 
 
+token = ""
+
+
 # Main
 class MainWindow(QMainWindow):
 
@@ -108,8 +111,9 @@ class MainWindow(QMainWindow):
 
         id = self.orders_table.item(self.orders_table.selectionModel().selectedRows()[0].row(), 11).text()
 
-        data = {"id": int(id)}
-        rq = session.post("https://leiga.fisedush.com/api/order/remove", data,
+        global token
+
+        rq = session.post("https://leiga.fisedush.com/api/order/remove/" + id, data="token=" + token,
                           background_callback=self.on_order_removal)
 
     @property
@@ -137,7 +141,10 @@ class MainWindow(QMainWindow):
     def load_order_data(self):
         session = FuturesSession()
 
-        rq = session.get("https://leiga.fisedush.com/api/orders", background_callback=self.on_order_list_data_load)
+        global token
+
+        rq = session.post("https://leiga.fisedush.com/api/orders", data="token=" + token,
+                          background_callback=self.on_order_list_data_load)
 
     def send_order_data(self):
         session = FuturesSession()
@@ -298,6 +305,8 @@ class LoginWindow(QMainWindow):
                     login_data_manager = LoginDataManager()
                     login_data_manager.username = self.username_text_edit.text()
                     login_data_manager.password = self.password_text_edit.text()
+                global token
+                token = json_data["token"]
                 self.open_main_window()
             else:
                 self.error_label.setText("Villa: Notendanafn eða lykilorð er rangt")

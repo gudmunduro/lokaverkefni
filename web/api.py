@@ -1,6 +1,8 @@
 import pymysql.cursors
 import json
 from bottle import *
+from uuid import uuid4
+from hashlib import sha512
 
 
 class ConnectAndCommit:
@@ -67,7 +69,7 @@ class Data:
         return False
 
     def remove_order(self, id):
-        query = "DELETE FROM orders WHERE id = %s"
+        query = "DELETE FROM orders WHERE order_id = %s"
         if self.try_for_mysql_errors(query, (id,)):
             self.cac.close_connection()
             return True
@@ -103,6 +105,29 @@ class Data:
             return fetch
         self.cac.close_connection()
         return []
+
+    def user_info_valid(self, username, password):
+        query = "SELECT * FROM admin_users WHERE username = %s AND password = %s"
+        if self.try_for_mysql_errors(query, (username, password)):
+            fetch = self.cac.cursor.fetchall()
+            if len(fetch) > 0:
+                return True
+            return False
+        return False
+
+class TokenManager:
+
+    tokens = []
+
+    @staticmethod
+    def get_new():
+        token = uuid4()
+        TokenManager.tokens.append(str(token))
+        return token
+
+    @staticmethod
+    def exists(token):
+        return token in TokenManager.tokens
 
 
 def post_data_exists(*args):
@@ -150,40 +175,40 @@ def order():
     return json.dumps({"order_status": status, "error_msg": data.errText})
 
 
-@route("/api/order/remove", method="post")
-def remove_order():
-    if request.forms.get("id") is not None:
-        id = request.forms.get("id")
+@route("/api/order/remove/<id>", method="post")
+def remove_order(id):
+    token = request.forms.get("token")
+    if TokenManager.exists(token):
         data = Data()
         status = data.remove_order(id)
         return json.dumps({"status": status, "error_msg": data.errText})
-    return json.dumps({"status": 0})
+    return json.dumps({"status": 0, "error_msg": "Token does not exist"})
 
 
-@route("/api/orders")
+@route("/api/orders", method="post")
 def orders():
-    data = Data().get_order_list()
-    print(data[0][8])
-    print(data[0][9])
-    new_data = [[d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7], str(d[8]),
-                 str(d[9]), d[10], d[11]] for d in data]
-    return json.dumps(new_data)
-
-
-@route("/api/login", method="post")
-def login():
-    login_status = 0
-    if request.forms.username == "user" and request.forms.password == "ab123":
-        login_status = 1
-    return json_dumps({"login_status": login_status})
+    token = request.forms.get("token")
+    if TokenManager.exists(token):
+        data = Data().get_order_list()
+        new_data = [[d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7], str(d[8]),
+                     str(d[9]), d[10], d[11]] for d in data]
+        return json.dumps(new_data)
+    return json.dumps([])
 
 
 @route("/api/admin/login", method="post")
 def admin_login():
     login_status = 0
-    if request.forms.username == "admin" and request.forms.password == "ab123":
+    token = ""
+    username = request.forms.get("username")
+    password = request.query.password
+    p = sha512()
+    p.update(password.encode("utf8"))
+    password = p.hexdigest()
+    if username is not None and password is not None and Data().user_info_valid(username, password):
         login_status = 1
-    return json_dumps({"login_status": login_status})
+        token = TokenManager.get_new()
+    return json_dumps({"login_status": login_status, "token": str(token)})
 
 
 @route("/api/download/desktopClient")
