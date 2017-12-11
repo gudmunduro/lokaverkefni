@@ -77,6 +77,18 @@ namespace WpfApp1
             {
                 File.Delete(@"c:\Program Files\GH Bílaleiga\mainwindow.ui");
             }
+            if (File.Exists(@"c:\Program Files\GH Bílaleiga\datepicker.py"))
+            {
+                File.Delete(@"c:\Program Files\GH Bílaleiga\datepicker.py");
+            }
+            if (File.Exists(@"c:\Program Files\GH Bílaleiga\loginData.json"))
+            {
+                File.Delete(@"c:\Program Files\GH Bílaleiga\loginData.json");
+            }
+            if (File.Exists(@"c:\Program Files\GH Bílaleiga\savedatamanager.py"))
+            {
+                File.Delete(@"c:\Program Files\GH Bílaleiga\savedatamanager.py");
+            }
 
             ZipFile.ExtractToDirectory(@"c:\Program Files\GH Bílaleiga\Desktop.zip", @"c:\Program Files\GH Bílaleiga\");
             if (File.Exists(@"c:\Program Files\GH Bílaleiga\Desktop.zip"))
@@ -86,6 +98,15 @@ namespace WpfApp1
 
             progressBar.Value = 50;
             status = $"Set upp (50%)";
+
+            var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Desktop";
+            using (StreamWriter sw = File.CreateText(desktopDir + @"\bilaleiga.bat"))
+            {
+                sw.WriteLine(@"python C:\Program Files\GH Bílaleiga\main.py");
+            }
+
+            progressBar.Value = 100;
+            status = $"Uppsetning tókst.  Opnaðu bilaleiga.bat á desktopinu";
         }
 
         private void tranformToInstallMode(Action onComplete)

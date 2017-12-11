@@ -13,3 +13,18 @@ C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\Deskto
 C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.Properties.Resources.resources
 C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.exe
 C:\Users\Gudmundur\Documents\Visual Studio 2017\Projects\DesktopInstaller\DesktopInstaller\obj\Debug\DesktopInstaller.pdb
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\bin\Debug\DesktopInstaller.exe.config
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\bin\Debug\DesktopInstaller.exe
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\bin\Debug\DesktopInstaller.pdb
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.csprojResolveAssemblyReference.cache
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\MainWindow.g.cs
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\App.g.cs
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller_MarkupCompile.cache
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller_MarkupCompile.lref
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\MainWindow.baml
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.g.resources
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.Properties.Resources.resources
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.csproj.GenerateResource.Cache
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.csproj.CoreCompileInputs.cache
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.exe
+E:\Projects\VEF\lokaverkefni\desktop\Installer\DesktopInstaller\obj\Debug\DesktopInstaller.pdb
