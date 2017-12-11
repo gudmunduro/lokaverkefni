@@ -25,11 +25,11 @@
     <main>
         <form method="post" action="/order">
             <h3>Upplýsingar um leigjanda</h3>
-            <input placeholder="Fullt nafn" type="text" name="customer_fullname"/>
-            <input placeholder="Símanúmer" type="tel" name="customer_phone" min="7" max="7"/>
-            <input placeholder="Netfang" type="email" name="customer_email"/>
-            <input placeholder="Þjóðerni" type="text" name="nationality" />
-            <input placeholder="Ökunúmer" type="number" name="driver_id_nr" min="7"/>
+            <input placeholder="Fullt nafn" type="text" name="customer_fullname" required/>
+            <input placeholder="Símanúmer" type="tel" name="customer_phone" min="999999" max="9999999" required/>
+            <input placeholder="Netfang" type="email" name="customer_email" required/>
+            <input placeholder="Þjóðerni" type="text" name="nationality" required/>
+            <input placeholder="Ökunúmer" type="number" name="driver_id_nr" min="1000000" required/>
             <h3>Upplýsingar um leigu</h3>
             <select name="car_id">
                 % for car in cars:
@@ -39,10 +39,10 @@
             <input type="date" name="order_date" />
             <input type="date" name="return_date" />
 			<h3>Kortaupplýsingar</h3>
-			<input placeholder="Kortanúmer" type="text" name="card_number" />
-			<input placeholder="Útrennslutími" type="text" name="card_exp_date" />
-			<input placeholder="CVN" type="text" name="CVN" /> 
-			<input type="submit" value="Panta" />
+			<input placeholder="Kortanúmer" type="text" name="card_number" required/>
+			<input placeholder="Útrennslutími" type="text" name="card_exp_date" required/>
+			<input placeholder="CVN" type="text" name="CVN" required/> 
+			<input type="submit" value="Panta"required />
         </form>
 		% if "order_status" in locals():
 			<p class="orderStatusLabel" style="color: {{ "white" if order_status == True else "red" }};">{{"Pöntun tókst" if order_status == True else "Pöntun mistókst( " + error_msg + " )"}}</p>
