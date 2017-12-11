@@ -22,14 +22,22 @@ class MainWindow(QMainWindow):
         self.set_from_date_button = self.findChild(QPushButton, "setFromDateButton")
         self.set_to_date_button = self.findChild(QPushButton, "setToDateButton")
         self.cars_table = self.findChild(QTableWidget, "carsTableWidget")
-        self.orders_table_widget = self.findChild(QTableWidget, "ordersTableWidget")
+        self.orders_table = self.findChild(QTableWidget, "ordersTableWidget")
         self.send_order_button = self.findChild(QPushButton, "sendOrderButton")
         self.card_exp_date_line_edit = self.findChild(QLineEdit, "expDateLineEdit")
+        self.orders_search_box = self.findChild(QLineEdit, "ordersSearchBox")
+        self.orders_search_button = self.findChild(QPushButton, "ordersSearchButton")
+        self.cars_search_box = self.findChild(QLineEdit, "carsSearchBox")
+        self.cars_search_button = self.findChild(QPushButton, "carsSearchButton")
+        self.orders_remove_button = self.findChild(QPushButton, "ordersRemoveButton")
 
         self.set_from_date_button.pressed.connect(self.set_from_date_button_clicked)
         self.set_to_date_button.pressed.connect(self.set_to_date_button_clicked)
         self.send_order_button.pressed.connect(self.send_order_data)
         self.card_exp_date_line_edit.textChanged.connect(self.on_card_exp_date_line_edit_text_change)
+        self.cars_search_button.pressed.connect(self.cars_search_button_clicked)
+        self.orders_search_button.pressed.connect(self.orders_search_button_clicked)
+        self.orders_remove_button.pressed.connect(self.orders_remove_button_clicked)
 
         date = datetime.now()
         self.set_from_date_button.setText(str(date.day) + "/" + str(date.month) + "/" + str(date.year))
@@ -85,6 +93,25 @@ class MainWindow(QMainWindow):
             self.update_day_count_label()
         show_date_picker(on_finish)
 
+    def cars_search_button_clicked(self):
+        self.search_in_table_widget(self.cars_search_box.text(), self.cars_table)
+
+    def orders_search_button_clicked(self):
+        self.search_in_table_widget(self.orders_search_box.text(), self.orders_table)
+
+    def orders_remove_button_clicked(self):
+        session = FuturesSession()
+
+        if len(self.orders_table.selectionModel().selectedRows()) < 1:
+            QMessageBox.about(self, "Villa", "Engin pöntun er valin")
+            return
+
+        id = self.orders_table.item(self.orders_table.selectionModel().selectedRows()[0].row(), 11).text()
+
+        data = {"id": int(id)}
+        rq = session.post("https://leiga.fisedush.com/api/order/remove", data,
+                          background_callback=self.on_order_removal)
+
     @property
     def day_count(self):
         count = (self.to_date.day() - self.from_date.day())
@@ -93,6 +120,14 @@ class MainWindow(QMainWindow):
     def update_day_count_label(self):
         day_count_label = self.findChild(QLabel, "dayCountLabel")
         day_count_label.setText(str(self.day_count))
+
+    def search_in_table_widget(self, text, table_widget):
+        for row in range(table_widget.rowCount()):
+            match = False
+            for column in range(table_widget.columnCount()):
+                if text in table_widget.item(row, column).text():
+                    match = True
+            table_widget.setRowHidden(row, not match)
 
     def load_car_data(self):
         session = FuturesSession()
@@ -126,13 +161,16 @@ class MainWindow(QMainWindow):
             return
 
         data = """customer_fullname=%s&customer_phone=%s&customer_email=%s&nationality=%s&card_number=%s&CVN=%s
-        &card_exp_date=%s&order_date=%s&return_date=%s&car_id=%s&driver_id_nr=%s""" % (customer_fullname, customer_phone,
-                customer_email, nationality, card_number, cvn, card_exp_date, order_date, return_date, car_id, driver_id_nr)
+        &card_exp_date=%s&order_date=%s&return_date=%s&car_id=%s&driver_id_nr=%s""" % (customer_fullname,
+        customer_phone, customer_email, nationality, card_number, cvn, card_exp_date, order_date, return_date,
+                                                                                       car_id, driver_id_nr)
 
-        rq = session.post("https://leiga.fisedush.com/api/order", data=data, background_callback=self.on_order_data_load)
+        rq = session.post("https://leiga.fisedush.com/api/order", data=data,
+                          background_callback=self.on_order_data_load)
 
     def on_car_data_load(self, session, response):
         cars = response.json()
+        self.cars_table.setRowCount(0)
         for c in range(len(cars)):
             car = cars[c]
             row_count = self.cars_table.rowCount()
@@ -153,25 +191,50 @@ class MainWindow(QMainWindow):
 
     def on_order_list_data_load(self, session, response):
         orders = response.json()
+        self.orders_table.setRowCount(0)
         for o in range(len(orders)):
             order = orders[o]
-            row_count = self.cars_table.rowCount()
-            self.orders_table_widget.insertRow(row_count)
-            self.orders_table_widget.setItem(row_count, 0, QTableWidgetItem(str(order[1])))
-            self.orders_table_widget.setItem(row_count, 1, QTableWidgetItem(str(order[2])))
-            self.orders_table_widget.setItem(row_count, 2, QTableWidgetItem(str(order[3])))
-            self.orders_table_widget.setItem(row_count, 3, QTableWidgetItem(str(order[4])))
-            self.orders_table_widget.setItem(row_count, 4, QTableWidgetItem(str(order[5])))
-            self.orders_table_widget.setItem(row_count, 5, QTableWidgetItem(str(order[6])))
-            self.orders_table_widget.setItem(row_count, 6, QTableWidgetItem(str(order[7])))
-            self.orders_table_widget.setItem(row_count, 7, QTableWidgetItem(str(order[8])))
-            self.orders_table_widget.setItem(row_count, 8, QTableWidgetItem(str(order[9])))
-            self.orders_table_widget.setItem(row_count, 9, QTableWidgetItem(str(order[10])))
-            self.orders_table_widget.setItem(row_count, 10, QTableWidgetItem(str(order[11])))
-            self.orders_table_widget.setColumnCount(10)
+            row_count = self.orders_table.rowCount()
+            self.orders_table.insertRow(row_count)
+            self.orders_table.setItem(row_count, 0, QTableWidgetItem(str(order[1])))
+            self.orders_table.setItem(row_count, 1, QTableWidgetItem(str(order[2])))
+            self.orders_table.setItem(row_count, 2, QTableWidgetItem(str(order[3])))
+            self.orders_table.setItem(row_count, 3, QTableWidgetItem(str(order[4])))
+            self.orders_table.setItem(row_count, 4, QTableWidgetItem(str(order[5])))
+            self.orders_table.setItem(row_count, 5, QTableWidgetItem(str(order[6])))
+            self.orders_table.setItem(row_count, 6, QTableWidgetItem(str(order[7])))
+            self.orders_table.setItem(row_count, 7, QTableWidgetItem(str(order[8])))
+            self.orders_table.setItem(row_count, 8, QTableWidgetItem(str(order[9])))
+            self.orders_table.setItem(row_count, 9, QTableWidgetItem(str(order[10])))
+            self.orders_table.setItem(row_count, 10, QTableWidgetItem(str(order[11])))
+            self.orders_table.setItem(row_count, 11, QTableWidgetItem(str(order[0])))
+            self.orders_table.setColumnCount(12)
 
     def on_order_data_load(self, session, response):
-        print(response.content)
+        data = response.json()
+        if data["order_status"] == 1:
+            print("Pöntun tókst")
+
+            self.findChild(QLineEdit, "nameLineEdit").setText("")
+            self.findChild(QLineEdit, "phoneLineEdit").setText("")
+            self.findChild(QLineEdit, "emailLineEdit").setText("")
+            self.findChild(QLineEdit, "nationalityLineEdit").setText("")
+            self.findChild(QLineEdit, "expDateLineEdit").setText("")
+            self.findChild(QLineEdit, "driverIdLineEdit").setText("")
+            self.findChild(QLineEdit, "cvnLineEdit").setText("")
+            self.findChild(QLineEdit, "cardNumberLineEdit").setText("")
+            self.findChild(QLineEdit, "carPlateLineEdit").setText("")
+
+            self.load_order_data()
+        else:
+            print("Pöntun mistókst")
+
+    def on_order_removal(self, session, response):
+        if response.json()["status"] == 1:
+            print("Pöntun hefur verið fjarlægð")
+            self.load_order_data()
+        else:
+            print("Mistókst að fjarlæga pöntun")
 
 
 # Login
@@ -197,9 +260,8 @@ class LoginWindow(QMainWindow):
             self.save_login_info_check_box.setChecked(True)
 
     def login_button_clicked(self):
-        self.temp_login()
-        return
-        session = FuturesSession()
+        self.login()
+        """session = FuturesSession()
 
         self.open_window = pyqtSignal(object)
         self.open_window.connect(self.open_main_window)
@@ -222,9 +284,9 @@ class LoginWindow(QMainWindow):
                 self.error_label.setHidden(False)
         except:
             self.error_label.setText("Óvent villa kom upp")
-            self.error_label.setHidden(False)
+            self.error_label.setHidden(False)"""
 
-    def temp_login(self):
+    def login(self):
         post_data = urllib.parse.urlencode({"username": self.username_text_edit.text(),
                                             "password": self.password_text_edit.text()})
         rq = urllib.request.Request('https://leiga.fisedush.com/api/admin/login', post_data.encode())
@@ -255,7 +317,7 @@ class LoginWindow(QMainWindow):
         self.error_label.setHidden(True)
 
 
-class CheckLoginWorkerObject(QObject):
+"""class CheckLoginWorkerObject(QObject):
 
     def __init__(self, login_window, parent=None):
         super(self.__class__, self).__init__(parent)
@@ -281,7 +343,7 @@ class CheckLoginWorkerObject(QObject):
                 self.login_window.error_label.setHidden(False)
         except:
             self.login_window.error_label.setText("Óvent villa kom upp")
-            self.login_window.error_label.setHidden(False)
+            self.login_window.error_label.setHidden(False)"""
 
 
 if __name__ == '__main__':

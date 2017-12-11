@@ -127,12 +127,17 @@ QLineEdit:focus{
       </column>
       <column>
        <property name="text">
-        <string>Id</string>
+        <string>Bíla Id</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Ökunúmer</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Pöntun id</string>
        </property>
       </column>
      </widget>
@@ -290,7 +295,7 @@ QPushButton:pressed{
        </property>
       </column>
      </widget>
-     <widget class="QLineEdit" name="ordersSearchBox_2">
+     <widget class="QLineEdit" name="carsSearchBox">
       <property name="geometry">
        <rect>
         <x>199</x>
@@ -318,7 +323,7 @@ QLineEdit:focus{
        <string>Leita</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="ordersSearchButton_2">
+     <widget class="QPushButton" name="carsSearchButton">
       <property name="geometry">
        <rect>
         <x>513</x>

@@ -66,6 +66,14 @@ class Data:
         self.cac.close_connection()
         return False
 
+    def remove_order(self, id):
+        query = "DELETE FROM orders WHERE id = %s"
+        if self.try_for_mysql_errors(query, (id,)):
+            self.cac.close_connection()
+            return True
+        self.cac.close_connection()
+        return False
+
     def get_order_list(self):
         query = """SELECT * FROM orders"""
         if self.try_for_mysql_errors(query):
@@ -142,10 +150,24 @@ def order():
     return json.dumps({"order_status": status, "error_msg": data.errText})
 
 
-@route("/api/orders", method="post")
+@route("/api/order/remove", method="post")
+def remove_order():
+    if request.forms.get("id") is not None:
+        id = request.forms.get("id")
+        data = Data()
+        status = data.remove_order(id)
+        return json.dumps({"status": status, "error_msg": data.errText})
+    return json.dumps({"status": 0})
+
+
+@route("/api/orders")
 def orders():
     data = Data().get_order_list()
-    return json.dumps(data)
+    print(data[0][8])
+    print(data[0][9])
+    new_data = [[d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7], str(d[8]),
+                 str(d[9]), d[10], d[11]] for d in data]
+    return json.dumps(new_data)
 
 
 @route("/api/login", method="post")
