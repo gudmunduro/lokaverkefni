@@ -150,6 +150,9 @@ main{
     border: 1px solid rgb(54, 111, 197);
     border-radius: 5px;
 }
+.carList div .info .about{
+    height: 182px;
+}
 .carList div .info h2{
     display: block;
     font-family: 'Muli', sans-serif;

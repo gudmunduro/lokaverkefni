@@ -33,11 +33,13 @@
                         <img src="incl/imgs/{{ str(car[12])}}">
                     </section>
                     <section class="info">
-                        <h2>{{ str(car[4]) + " " + str(car[5]) }}</h2>
-                        <p>Hestöfl: {{ str(car[7]) }}</p>
-                        <p>Árgerð: {{ str(car[6]) }}</p>
-                        <p>Drif: {{ str(car[9]) }}</p>
-                        <p>Eldsneyti: {{ str(car[11]) }}</p>
+						<section class="about">
+							<h2>{{ str(car[4]) + " " + str(car[5]) }}</h2>
+							<p>Hestöfl: {{ str(car[7]) }}</p>
+							<p>Árgerð: {{ str(car[6]) }}</p>
+							<p>Drif: {{ str(car[9]) }}</p>
+							<p>Eldsneyti: {{ str(car[11]) }}</p>
+						</section>
                         <a onclick="showCarInfoView({{ str(car[0]) }})" class="moreInfo">Skoða nánar</a>
                         <a href="/order?selected={{ str(car[0]) }}" class="order">Panta</a>
                     </section>
