@@ -1,5 +1,6 @@
 ﻿
 var currentCarInfoView = null;
+var currentTimer = null;
 
 class CarInfoView {
 
@@ -60,6 +61,7 @@ class CarInfoView {
         this.actionsSection.className = "actions";
         this.orderButton.className = "order";
         this.orderButton.innerHTML = "Panta";
+        this.orderButton.href = "/order?selected=" + carId;
 
         this.actionsSection.appendChild(this.orderButton);
 
@@ -136,12 +138,21 @@ function showCarInfoView(carId) {
     {
         currentCarInfoView = new CarInfoView(carId);
         currentCarInfoView.hidden = false;
+        currentTimer = null;
     }
     if (currentCarInfoView != null && currentCarInfoView.hidden == false)
     {
+        if (currentTimer != null)
+        {
+            clearTimeout(currentTimer);
+        }
         currentCarInfoView.hidden = true;
-        setTimeout(createNew, 300);
+        currentTimer = setTimeout(createNew, 300);
         return;
+    }
+    if (currentTimer != null)
+    {
+        clearTimeout(currentTimer);
     }
     createNew();
 }

@@ -23,22 +23,30 @@
         </ul>
     </header>
     <main>
-        <form>
+        <form method="post" action="/order">
             <h3>Upplýsingar um leigjanda</h3>
-            <input type="text" name="fullName"/>
-            <input type="tel" name="phone" min="7" max="7"/>
-            <input type="email" name="email"/>
-            <input type="text" name="nationality" />
-            <input type="number" name="driversLicense" min="7"/>
+            <input placeholder="Fullt nafn" type="text" name="customer_fullname"/>
+            <input placeholder="Símanúmer" type="tel" name="customer_phone" min="7" max="7"/>
+            <input placeholder="Netfang" type="email" name="customer_email"/>
+            <input placeholder="Þjóðerni" type="text" name="nationality" />
+            <input placeholder="Ökunúmer" type="number" name="driver_id_nr" min="7"/>
             <h3>Upplýsingar um leigu</h3>
-            <select name="carSelect">
+            <select name="car_id">
                 % for car in cars:
-                <option>{{str(car[1]) + str(car[2])}}</option>
+                <option value={{ str(car[0]) }} {{ "selected" if selected is not None and selected == int(car[0]) else "" }}>{{str(car[4]) + " " + str(car[5] + " " + str(car[6]) )}}</option>
                 % end
             </select>
-            <input type="date" name="startDate" />
-            <input type="date" name="endDate" />
+            <input type="date" name="order_date" />
+            <input type="date" name="return_date" />
+			<h3>Kortaupplýsingar</h3>
+			<input placeholder="Kortanúmer" type="text" name="card_number" />
+			<input placeholder="Útrennslutími" type="text" name="card_exp_date" />
+			<input placeholder="CVN" type="text" name="CVN" /> 
+			<input type="submit" value="Panta" />
         </form>
+		% if "order_status" in locals():
+			<p class="orderStatusLabel" style="color: {{ "white" if order_status == True else "red" }};">{{"Pöntun tókst" if order_status == True else "Pöntun mistókst( " + error_msg + " )"}}</p>
+		% end
     </main>
 </body>
 </html>

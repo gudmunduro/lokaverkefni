@@ -39,7 +39,7 @@
                         <p>Drif: {{ str(car[9]) }}</p>
                         <p>Eldsneyti: {{ str(car[11]) }}</p>
                         <a onclick="showCarInfoView({{ str(car[0]) }})" class="moreInfo">Skoða nánar</a>
-                        <a class="order">Panta</a>
+                        <a href="/order?selected={{ str(car[0]) }}" class="order">Panta</a>
                     </section>
                 </div>
 				% end

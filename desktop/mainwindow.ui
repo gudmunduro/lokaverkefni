@@ -80,34 +80,59 @@ QLineEdit:focus{
       <attribute name="verticalHeaderStretchLastSection">
        <bool>false</bool>
       </attribute>
-      <row>
-       <property name="text">
-        <string>AB-123</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>PZ-615</string>
-       </property>
-      </row>
       <column>
        <property name="text">
-        <string>Tegund</string>
+        <string>Bílnúmer</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Flokkur</string>
+        <string>Fullt nafn</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Frá</string>
+        <string>Netfang</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Til</string>
+        <string>Þjóðerni</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Kortanúmer</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>CVN</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Útrennsludagur</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Útlánsdagur</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Skiladagur</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Id</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ökunúmer</string>
        </property>
       </column>
      </widget>
@@ -351,7 +376,7 @@ QPushButton:pressed{
        <string>Sími</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="carPlateEmailLineEdit">
+     <widget class="QLineEdit" name="carPlateLineEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -580,7 +605,7 @@ QPushButton:pressed{
        </rect>
       </property>
       <property name="placeholderText">
-       <string>Útrennsludagur</string>
+       <string>Útrennslutími</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="cvnLineEdit">

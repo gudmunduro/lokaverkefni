@@ -114,11 +114,60 @@ header ul li a:hover{
 }
 /* </Underline> */
 
-
+/* <main> */
+main {
+    margin: 80px auto;
+    padding: 20px;
+    width: calc(100% - 90px);
+    display: flex;
+    flex-flow: row wrap;
+    background-color: rgba(255, 255, 255, 0.12);
+    min-height: 90%;
+    border-radius: 15px;
+    z-index: 0;
+}
+main .orderStatusLabel{
+    text-align: center;
+    font-family: 'Muli', sans-serif;
+    color: white;
+    font-weight: 300;
+}
+/* </main> */
 
 /* <form> */
 form{
-    margin-top: 100px;
+    
+}
+form h3{
+    font-family: 'Muli', sans-serif;
+    color: white;
+    font-weight: 300;
+}
+form input{
+
+}
+form input[type=submit]{
+    display: block;
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #4A148C;
+    color: white;
+    font-family: 'Vollkorn SC', serif;
+    font-size: 1.2em;
+    width: 140px;
+    user-select: none;
+    margin-top: 26px;
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+}
+form input[type=submit]:hover{
+    cursor: default;
+    background-color: #26204f;
+    transform: scale(1.03);
+}
+form input[type=submit]:active{
+    cursor: default;
+    transform: scale(0.95);
 }
 /* </form> */
 

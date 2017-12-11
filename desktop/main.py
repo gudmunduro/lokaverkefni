@@ -22,11 +22,14 @@ class MainWindow(QMainWindow):
         self.set_from_date_button = self.findChild(QPushButton, "setFromDateButton")
         self.set_to_date_button = self.findChild(QPushButton, "setToDateButton")
         self.cars_table = self.findChild(QTableWidget, "carsTableWidget")
+        self.orders_table_widget = self.findChild(QTableWidget, "ordersTableWidget")
         self.send_order_button = self.findChild(QPushButton, "sendOrderButton")
+        self.card_exp_date_line_edit = self.findChild(QLineEdit, "expDateLineEdit")
 
         self.set_from_date_button.pressed.connect(self.set_from_date_button_clicked)
         self.set_to_date_button.pressed.connect(self.set_to_date_button_clicked)
         self.send_order_button.pressed.connect(self.send_order_data)
+        self.card_exp_date_line_edit.textChanged.connect(self.on_card_exp_date_line_edit_text_change)
 
         date = datetime.now()
         self.set_from_date_button.setText(str(date.day) + "/" + str(date.month) + "/" + str(date.year))
@@ -38,8 +41,23 @@ class MainWindow(QMainWindow):
         self.update_day_count_label()
 
         self.load_car_data()
+        self.load_order_data()
 
         self.car_plates = {}
+
+        self.card_exp_date_line_edit_state = 0
+
+    def on_card_exp_date_line_edit_text_change(self):
+        char_count = len(self.card_exp_date_line_edit.text())
+        if char_count == 2 and self.card_exp_date_line_edit_state == 0:
+            self.card_exp_date_line_edit.setText(self.card_exp_date_line_edit.text() + "/")
+            self.card_exp_date_line_edit_state = 1
+            return
+        if char_count == 2 and self.card_exp_date_line_edit_state == 1:
+            self.card_exp_date_line_edit_state = 0
+            return
+        if char_count == 6:
+            self.card_exp_date_line_edit.setText(self.card_exp_date_line_edit.text()[0:-1])
 
     def set_from_date_button_clicked(self):
         def on_finish(date):
@@ -52,8 +70,6 @@ class MainWindow(QMainWindow):
                 self.set_from_date_button.setText(str(self.to_date.day()) + "/" + str(self.to_date.month())
                                                 + "/" + str(self.to_date.year()))
             self.update_day_count_label()
-            print(self.from_date.toString())
-            print(self.to_date.toString())
         show_date_picker(on_finish)
 
     def set_to_date_button_clicked(self):
@@ -83,6 +99,11 @@ class MainWindow(QMainWindow):
 
         rq = session.get("https://leiga.fisedush.com/api/cars", background_callback=self.on_car_data_load)
 
+    def load_order_data(self):
+        session = FuturesSession()
+
+        rq = session.get("https://leiga.fisedush.com/api/orders", background_callback=self.on_order_list_data_load)
+
     def send_order_data(self):
         session = FuturesSession()
 
@@ -93,10 +114,16 @@ class MainWindow(QMainWindow):
         card_exp_date = self.findChild(QLineEdit, "expDateLineEdit").text()
         order_date = str(self.from_date.day()) + "-" + str(self.from_date.month()) + "-" + str(self.from_date.month())
         return_date = str(self.to_date.day()) + "-" + str(self.to_date.month()) + "-" + str(self.to_date.month())
-        car_id = str(1)
         driver_id_nr = self.findChild(QLineEdit, "driverIdLineEdit").text()
         cvn = self.findChild(QLineEdit, "cvnLineEdit").text()
         card_number = self.findChild(QLineEdit, "cardNumberLineEdit").text()
+
+        car_plate = self.findChild(QLineEdit, "carPlateLineEdit").text()
+        if car_plate in list(self.car_plates.keys()):
+            car_id = self.car_plates[car_plate]
+        else:
+            QMessageBox.about(self, "Villa", "Bílnúmer er ekki til")
+            return
 
         data = """customer_fullname=%s&customer_phone=%s&customer_email=%s&nationality=%s&card_number=%s&CVN=%s
         &card_exp_date=%s&order_date=%s&return_date=%s&car_id=%s&driver_id_nr=%s""" % (customer_fullname, customer_phone,
@@ -106,8 +133,6 @@ class MainWindow(QMainWindow):
 
     def on_car_data_load(self, session, response):
         cars = response.json()
-        print(len(cars))
-        self.car_plates = {}
         for c in range(len(cars)):
             car = cars[c]
             row_count = self.cars_table.rowCount()
@@ -124,10 +149,26 @@ class MainWindow(QMainWindow):
             self.cars_table.setItem(row_count, 9, QTableWidgetItem(str(car[11])))
             self.cars_table.setColumnCount(10)
 
-            try:
-                self.car_plates.update({car[3]: str(self.car_plates[1])})
-            except KeyError as e:
-                print("ERROR:", str(e))
+            self.car_plates[str(car[1])] = str(car[0])
+
+    def on_order_list_data_load(self, session, response):
+        orders = response.json()
+        for o in range(len(orders)):
+            order = orders[o]
+            row_count = self.cars_table.rowCount()
+            self.orders_table_widget.insertRow(row_count)
+            self.orders_table_widget.setItem(row_count, 0, QTableWidgetItem(str(order[1])))
+            self.orders_table_widget.setItem(row_count, 1, QTableWidgetItem(str(order[2])))
+            self.orders_table_widget.setItem(row_count, 2, QTableWidgetItem(str(order[3])))
+            self.orders_table_widget.setItem(row_count, 3, QTableWidgetItem(str(order[4])))
+            self.orders_table_widget.setItem(row_count, 4, QTableWidgetItem(str(order[5])))
+            self.orders_table_widget.setItem(row_count, 5, QTableWidgetItem(str(order[6])))
+            self.orders_table_widget.setItem(row_count, 6, QTableWidgetItem(str(order[7])))
+            self.orders_table_widget.setItem(row_count, 7, QTableWidgetItem(str(order[8])))
+            self.orders_table_widget.setItem(row_count, 8, QTableWidgetItem(str(order[9])))
+            self.orders_table_widget.setItem(row_count, 9, QTableWidgetItem(str(order[10])))
+            self.orders_table_widget.setItem(row_count, 10, QTableWidgetItem(str(order[11])))
+            self.orders_table_widget.setColumnCount(10)
 
     def on_order_data_load(self, session, response):
         print(response.content)

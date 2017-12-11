@@ -66,6 +66,14 @@ class Data:
         self.cac.close_connection()
         return False
 
+    def get_order_list(self):
+        query = """SELECT * FROM orders"""
+        if self.try_for_mysql_errors(query):
+            fetch = self.cac.cursor.fetchall()
+            self.cac.close_connection()
+            return fetch
+        return []
+
     def get_car_list(self):
         query = """SELECT * FROM cars
         inner join car_types on cars.car_type = car_types.type_id
@@ -116,7 +124,7 @@ def car(id):
 def order():
     if not post_data_exists("customer_fullname", "customer_phone", "customer_email", "nationality", "card_number",
                             "CVN", "card_exp_date", "order_date", "return_date", "car_id", "driver_id_nr"):
-        return json.dumps({"order_status": 0, "error_msg": "Order failed"})
+        return json.dumps({"order_status": 0, "error_msg": "Vantar upplýsingar"})
     customer_fullname = request.forms.get("customer_fullname")
     customer_phone = request.forms.get("customer_phone")
     customer_email = request.forms.get("customer_email")
@@ -132,6 +140,12 @@ def order():
     status = data.send_order(customer_fullname, customer_phone, customer_email, nationality, card_number, CVN, card_exp_date,
                       order_date, return_date, car_id, driver_id_nr)
     return json.dumps({"order_status": status, "error_msg": data.errText})
+
+
+@route("/api/orders", method="post")
+def orders():
+    data = Data().get_order_list()
+    return json.dumps(data)
 
 
 @route("/api/login", method="post")
